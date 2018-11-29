@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram_Layout version="13">
+    <diagramOptions>
+        <autolayout>false</autolayout>
+        <antialiasing>false</antialiasing>
+        <showassocnames>false</showassocnames>
+        <showattributes>true</showattributes>
+        <showmultiplicities>false</showmultiplicities>
+        <showoperations>false</showoperations>
+        <showrolenames>true</showrolenames>
+        <showgrid>false</showgrid>
+    </diagramOptions>
+    <node height="14.0" id="s" sizeCalculated="false"
+        type="PseudoStateNode" width="14.0">
+        <name>s</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>80.12268728280335</x>
+            <y>94.18947389979199</y>
+        </strategy>
+        <node id="s::StateName" sizeCalculated="true" type="StateName">
+            <name>s</name>
+            <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                <userOffsetX>0.0</userOffsetX>
+                <userOffsetY>0.0</userOffsetY>
+                <basisDeltaX>ABSOLUTE</basisDeltaX>
+                <deltaX>0.0</deltaX>
+                <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                <basisDeltaY>ABSOLUTE</basisDeltaY>
+                <deltaY>10.0</deltaY>
+                <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                <corner>NORTH</corner>
+                <relativeNodeId>s</relativeNodeId>
+            </strategy>
+            <hidden>false</hidden>
+        </node>
+        <hidden>false</hidden>
+    </node>
+    <node id="Born" sizeCalculated="true" type="StateNode">
+        <name>Born</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>165.40614428614265</x>
+            <y>217.0</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
+        <hidden>false</hidden>
+    </node>
+    <edge type="Transition">
+        <source>s</source>
+        <target>Born</target>
+        <name>/</name>
+        <waypoints>
+            <edgeproperty id="transition::s::Born::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::s::Born::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger/>
+                <guard/>
+                <post/>
+                <edgeproperty id="/" sizeCalculated="true"
+                    type="TransitionLabel" userDefined="false" visible="true">
+                    <name>/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::s::Born::::WayPoint::0</related0>
+                            <related1>transition::s::Born::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+</diagram_Layout>

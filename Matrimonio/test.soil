@@ -1,0 +1,32 @@
+-- reset
+!new System('S')
+!new Clock('clock')
+!insert (S, clock) into ClockSystem
+!new Person('Joe')
+!new Person('Jules')
+!new Person('Teresa')
+!new Person('Antonia')
+!new Person('Antonio')
+!new Person('Juana')
+!new Person('Paco')
+!new Person('Alfredo')
+!new Person('Frasquito')
+!new Person('Pepa')
+!insert (S, Joe) into Community
+!insert (S, Jules) into Community
+!insert (S, Teresa) into Community
+!insert (S, Antonio) into Community
+!insert (S, Antonio) into Community
+!insert (S, Paco) into Community
+!insert (S, Alfredo) into Community
+!insert (S, Joe) into Community
+!insert (S, Frasquito) into Community
+!insert (S, Pepa) into Community
+open test2.soil
+open test2.soil
+!Jule.marry(Joe)
+open test2.soil
+!Jule.kill()
+open test2.soil
+open test2.soil
+!Joe.kill()

@@ -1,0 +1,175 @@
+model Marriage
+
+class Clock
+attributes
+now:Integer init: 2018
+operations
+  tick() -- 1 year
+    begin
+      self.now:=self.now+1;
+      for p in self.system.people do
+        if not p.isDead then p.birthday();
+        end
+      end
+    end
+    post oneYearHasPassed: self.now = self.now@pre+1
+end
+
+class System
+end
+
+class Person
+attributes
+  age:Integer init: 0
+  birthdate:Integer init: Clock.allInstances->collect(now)->asSequence()->first()
+  deathDate:Integer init: -1
+  isDead:Boolean derive = deathDate<>-1
+operations
+  marriages(): Integer = self.wife->union(self.husband)->size()
+  isMarried(): Boolean= self.wife->union(self.husband)-> exists(m | m.finishDate=-1)
+  marry(p:Person)
+    begin
+      declare m:Marriage;
+      m := new Marriage;
+      m.weddingDate:=self.system.clock.now;
+      m.finishDate:=-1;
+      insert(p, m) into MarriageHusband;
+      insert(self, m) into MarriageWife;
+    end
+    pre notMyself: p<>self
+    pre bothAlive: not(p.isDead or self.isDead)
+    pre noOneCurrentlyMarried:
+      not (self.isMarried() or p.isMarried())
+
+    post onlyOneNewMarriage: self.husband->select(m | m.oclIsNew())->size()=1
+    post newMarriage: let m:Marriage = self.husband->select(m | m.oclIsNew())->asSequence()->first()
+                      in m.weddingDate = self.system.clock.now
+                      and self.husband->includes(m) and p.wife->includes(m)
+                      and m.husband = p and m.wife = self
+  birthday()
+    begin
+      self.age:=self.age+1
+    end
+    pre: system.clock.now>birthdate+age
+    post: self.age = self.age@pre + 1
+  kill()
+    begin
+      self.deathDate := self.system.clock.now;
+      if self.isMarried() then
+        declare currentMarriage:Marriage;
+        currentMarriage := self.husband->union(self.wife)->select(m | m.finishDate = -1)
+                          ->asSequence()->first();
+        currentMarriage.finishDate := self.system.clock.now;
+      end
+    end
+    pre isAlive: not self.isDead
+    post deathNoted: self.deathDate=self.system.clock.now@pre
+    post everyMarriageEnd:
+      self.husband->union(self.wife)
+      ->forAll(m | m.finishDate<=self.system.clock.now@pre)
+  divorce()
+    begin
+      declare currentMarriage:Marriage;
+      currentMarriage := self.husband->union(self.wife)->select(m | m.finishDate = -1)
+                        ->asSequence()->first();
+      currentMarriage.finishDate := self.system.clock.now;
+    end
+    pre activeMarriage: self.isMarried()
+    post everyMarriageEnd:
+      self.husband->union(self.wife)
+      ->forAll(m | m.finishDate<=self.system.clock.now@pre)
+ statemachines
+      psm LifeCycle
+        states
+            s: initial
+            Kid
+            Young
+            Adult
+            Elder
+            Dead
+        transitions
+            s -> Kid
+            Kid -> Dead { kill() }
+            Young -> Dead { kill() }
+            Adult -> Dead { kill() }
+            Elder -> Dead { kill() }
+            Kid -> Kid { [self.age < 11] birthday ()}
+            Kid -> Young { [self.age = 11] birthday() }
+            Young -> Young { [self.age < 17] birthday() }
+            Young -> Adult { [self.age = 17] birthday() }
+            Adult -> Adult { [self.age < 67] birthday() }
+            Adult -> Elder { [self.age = 67] birthday() }
+            Elder -> Elder { [self.age > 68] birthday() }
+    end
+    psm CivilStatus
+      states
+          s: initial
+          Single
+          Divorced
+          Widowed
+          Married
+      transitions
+          s -> Single
+          Single -> Married { marry() }
+          Married -> Widowed { kill() }
+          Married -> Divorced { [self.isMarried()] divorce() }
+      end
+end
+
+class Marriage
+attributes
+  weddingDate:Integer
+  finishDate:Integer
+end
+
+association MarriageWife between
+Person[1]
+role wife
+Marriage[*]
+role husband
+end
+
+association MarriageHusband between
+Person[1]
+role husband
+Marriage[*]
+role wife
+end
+
+composition Community between
+System[1]
+role system
+Person[*]
+role people
+end
+
+composition ClockSystem between
+System[1] role system
+Clock[1] role clock
+end
+
+constraints
+
+context Person
+inv dontDieBeforeBeingBorn:
+  deathDate <> -1 implies deathDate>=self.birthdate
+inv noFutureBorn:
+  self.birthdate<=self.system.clock.now
+inv noDeadMarriage:
+  self.isDead implies (self.husband->union(self.wife))->forAll(m| self.deathDate >= m.finishDate)
+inv Monogamy:
+  self.husband->union(self.wife)->select(m | m.finishDate = -1)->size <= 1
+inv noChildMarried:
+  self.age < 12 implies not self.isMarried()
+
+context Marriage
+inv dontMarryYourself:
+  husband <> wife
+inv dontEndMarriageBeforeWedding:
+  finishDate <> -1 implies finishDate>=self.weddingDate
+inv noFutureMarriage:
+  self.weddingDate<=Clock.allInstances->collect(now)->asSequence()->first()
+
+context Clock
+inv singleton:
+  Clock.allInstances->size()=1
