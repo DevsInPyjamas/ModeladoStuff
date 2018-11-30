@@ -60,9 +60,15 @@ operations
     end
     pre: system.clock.now>birthdate+age
     post: self.age = self.age@pre + 1
-  notifySpouseDead()
-  begin
-  end
+  notifySpouseDead(p:Person)
+    begin
+    end
+    pre bothMarriedWithTheOther:
+      let activeMarriage:Marriage = self.husband->union(self.wife)
+      ->select(m | m.finishDate = -1)->asSequence()->first() in
+      self.isMarried() and
+      (activeMarriage.husband = p or activeMarriage.wife = p)
+    pre spouseIsDead: p.isDead
   kill()
     begin
       self.deathDate := self.system.clock.now;
@@ -70,12 +76,12 @@ operations
         declare currentMarriage:Marriage;
         currentMarriage := self.husband->union(self.wife)->select(m | m.finishDate = -1)
                           ->asSequence()->first();
-        currentMarriage.finishDate := self.system.clock.now;
         if currentMarriage.husband = self then
-          currentMarriage.wife.notifySpouseDead();
+          currentMarriage.wife.notifySpouseDead(self);
         else
-          currentMarriage.husband.notifySpouseDead();
+          currentMarriage.husband.notifySpouseDead(self);
         end
+        currentMarriage.finishDate := self.system.clock.now;
       end
     end
     pre isAlive: not self.isDead
