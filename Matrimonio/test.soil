@@ -22,11 +22,14 @@
 !insert (S, Joe) into Community
 !insert (S, Frasquito) into Community
 !insert (S, Pepa) into Community
+-- !S.marry(Joe, Jules)
 open test2.soil
 open test2.soil
-!Jule.marry(Joe)
+step on
+!S.marry(Jules, Joe)
 open test2.soil
-!Jule.kill()
+step on
+!Jules.kill()
 open test2.soil
 open test2.soil
-!Joe.kill()
+-- !Joe.kill()

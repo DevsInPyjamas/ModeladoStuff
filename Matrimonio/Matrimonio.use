@@ -16,6 +16,29 @@ operations
 end
 
 class System
+operations
+  marry(p1:Person, p2:Person)
+    begin
+      declare m:Marriage;
+      m := new Marriage;
+      m.weddingDate:=self.clock.now;
+      m.finishDate:=-1;
+      insert(p1, m) into MarriageHusband;
+      insert(p2, m) into MarriageWife;
+      p1.marry();
+      p2.marry();
+    end
+    pre noKiddosAllowed: p1.age > 17 and p2.age > 17
+    pre notMyself: p1<>p2
+    pre bothAlive: not(p1.isDead or p2.isDead)
+    pre noOneCurrentlyMarried:
+      not (p2.isMarried() or p1.isMarried())
+    post onlyOneNewMarriage: p1.marriages() = p1.husband@pre->union(p1.wife@pre)->size() + 1 and
+                             p2.marriages() = p2.husband@pre->union(p2.wife@pre)->size() + 1
+    post newMarriage: let m:Marriage = p2.husband->select(m | m.oclIsNew())->asSequence()->first()
+                      in m.weddingDate = p2.system.clock.now
+                      and p2.husband->includes(m) and p1.wife->includes(m)
+                      and m.husband = p1 and m.wife = p2
 end
 
 class Person
@@ -27,31 +50,19 @@ attributes
 operations
   marriages(): Integer = self.wife->union(self.husband)->size()
   isMarried(): Boolean= self.wife->union(self.husband)-> exists(m | m.finishDate=-1)
-  marry(p:Person)
-    begin
-      declare m:Marriage;
-      m := new Marriage;
-      m.weddingDate:=self.system.clock.now;
-      m.finishDate:=-1;
-      insert(p, m) into MarriageHusband;
-      insert(self, m) into MarriageWife;
-    end
-    pre notMyself: p<>self
-    pre bothAlive: not(p.isDead or self.isDead)
-    pre noOneCurrentlyMarried:
-      not (self.isMarried() or p.isMarried())
 
-    post onlyOneNewMarriage: self.husband->select(m | m.oclIsNew())->size()=1
-    post newMarriage: let m:Marriage = self.husband->select(m | m.oclIsNew())->asSequence()->first()
-                      in m.weddingDate = self.system.clock.now
-                      and self.husband->includes(m) and p.wife->includes(m)
-                      and m.husband = p and m.wife = self
+  marry()
+    begin
+    end
   birthday()
     begin
       self.age:=self.age+1
     end
     pre: system.clock.now>birthdate+age
     post: self.age = self.age@pre + 1
+  notifySpouseDead()
+  begin
+  end
   kill()
     begin
       self.deathDate := self.system.clock.now;
@@ -60,6 +71,11 @@ operations
         currentMarriage := self.husband->union(self.wife)->select(m | m.finishDate = -1)
                           ->asSequence()->first();
         currentMarriage.finishDate := self.system.clock.now;
+        if currentMarriage.husband = self then
+          currentMarriage.wife.notifySpouseDead();
+        else
+          currentMarriage.husband.notifySpouseDead();
+        end
       end
     end
     pre isAlive: not self.isDead
@@ -69,10 +85,6 @@ operations
       ->forAll(m | m.finishDate<=self.system.clock.now@pre)
   divorce()
     begin
-      declare currentMarriage:Marriage;
-      currentMarriage := self.husband->union(self.wife)->select(m | m.finishDate = -1)
-                        ->asSequence()->first();
-      currentMarriage.finishDate := self.system.clock.now;
     end
     pre activeMarriage: self.isMarried()
     post everyMarriageEnd:
@@ -111,7 +123,7 @@ operations
       transitions
           s -> Single
           Single -> Married { marry() }
-          Married -> Widowed { kill() }
+          Married -> Widowed { notifySpouseDead() }
           Married -> Divorced { [self.isMarried()] divorce() }
       end
 end
