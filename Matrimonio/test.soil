@@ -4,29 +4,36 @@
 !insert (S, clock) into ClockSystem
 !new Person('Joe')
 !new Person('Jules')
-!new Person('Teresa')
-!new Person('Antonia')
-!new Person('Antonio')
-!new Person('Juana')
-!new Person('Paco')
-!new Person('Alfredo')
-!new Person('Frasquito')
-!new Person('Pepa')
+--!new Person('Teresa')
+--!new Person('Antonia')
+--!new Person('Antonio')
+--!new Person('Juana')
+--!new Person('Paco')
+--!new Person('Alfredo')
+--!new Person('Frasquito')
+--!new Person('Pepa')
 !insert (S, Joe) into Community
 !insert (S, Jules) into Community
-!insert (S, Teresa) into Community
-!insert (S, Antonio) into Community
-!insert (S, Antonio) into Community
-!insert (S, Paco) into Community
-!insert (S, Alfredo) into Community
-!insert (S, Joe) into Community
-!insert (S, Frasquito) into Community
-!insert (S, Pepa) into Community
+!new Marriage('m')
+--!insert (S, Teresa) into Community
+--!insert (S, Antonio) into Community
+--!insert (S, Antonio) into Community
+--!insert (S, Paco) into Community
+--!insert (S, Alfredo) into Community
+--!insert (S, Joe) into Community
+--!insert (S, Frasquito) into Community
+--!insert (S, Pepa) into Community
 -- !S.marry(Joe, Jules)
+step on
+!m.weddingDate:=clock.now;
+!m.finishDate:=-1;
+!insert(Joe, m) into MarriageHusband;
+!insert(Jules, m) into MarriageWife;
+-- !S.marry(Jules, Joe)
 open test2.soil
 open test2.soil
 step on
-!S.marry(Jules, Joe)
+-- !S.marry(Jules, Joe)
 open test2.soil
 step on
 !Jules.kill()

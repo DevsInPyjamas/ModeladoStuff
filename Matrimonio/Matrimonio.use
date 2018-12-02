@@ -28,7 +28,7 @@ operations
       p1.marry();
       p2.marry();
     end
-    pre noKiddosAllowed: p1.age > 17 and p2.age > 17
+    pre noKiddosAllowed: p1.age > 12 and p2.age > 12
     pre notMyself: p1<>p2
     pre bothAlive: not(p1.isDead or p2.isDead)
     pre noOneCurrentlyMarried:
@@ -50,10 +50,9 @@ attributes
 operations
   marriages(): Integer = self.wife->union(self.husband)->size()
   isMarried(): Boolean= self.wife->union(self.husband)-> exists(m | m.finishDate=-1)
-
   marry()
-    begin
-    end
+  begin
+  end
   birthday()
     begin
       self.age:=self.age+1
@@ -78,10 +77,11 @@ operations
                           ->asSequence()->first();
         if currentMarriage.husband = self then
           currentMarriage.wife.notifySpouseDead(self);
+          currentMarriage.finishDate := self.system.clock.now;
         else
           currentMarriage.husband.notifySpouseDead(self);
+          currentMarriage.finishDate := self.system.clock.now;
         end
-        currentMarriage.finishDate := self.system.clock.now;
       end
     end
     pre isAlive: not self.isDead
