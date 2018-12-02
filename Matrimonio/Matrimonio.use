@@ -22,9 +22,9 @@ operations
         declare currentMarriage:Marriage;
         currentMarriage := p1.husband->union(p1.wife)->select(m | m.finishDate = -1)
                       ->asSequence()->first();
+        currentMarriage.finishDate := self.clock.now;
         p1.divorce(currentMarriage);
         p2.divorce(currentMarriage);
-        currentMarriage.finishDate := self.clock.now;
     end
     pre activeMarriageAndSamePersons:
             p1.husband->union(p1.wife)->select(m | m.finishDate = -1)
@@ -71,11 +71,8 @@ operations
   isMarried(): Boolean= self.wife->union(self.husband)->exists(m | m.finishDate=-1)
   marry(m: Marriage)
   begin
-    m.counter := m.counter + 1
   end
   pre marryNow: m.weddingDate = system.clock.now
-  pre justOneCall: m.counter < 2
-  post increment: m.counter = m.counter@pre+1
   birthday()
     begin
       self.age:=self.age+1
@@ -114,16 +111,13 @@ operations
       ->forAll(m | m.finishDate<=self.system.clock.now@pre)
   divorce(m: Marriage)
     begin
-        m.counter := m.counter - 1
     end
-    pre activeMarriage: self.isMarried()
-    pre noMoreDivorces: m.counter > 0
-    post counterDecreased: m.counter = m.counter@pre - 1
+    pre divorcedNow: m.finishDate = system.clock.now
     post everyMarriageEnd:
       self.husband->union(self.wife)
       ->forAll(m | m.finishDate <= self.system.clock.now@pre)
  statemachines
-      psm LifeCycle
+    psm LifeCycle
         states
             s: initial
             Kid
@@ -156,7 +150,7 @@ operations
           s -> Single
           Single -> Married { marry() }
           Married -> Widowed { [self.isMarried()] notifySpouseDead() }
-          Married -> Divorced { [self.isMarried()] divorce() }
+          Married -> Divorced { divorce() }
           Divorced -> Married { marry() }
           Divorced -> Divorced { kill() }
           Married -> Married { kill() }
@@ -169,7 +163,6 @@ class Marriage
 attributes
   weddingDate:Integer
   finishDate:Integer
-  counter: Integer init: 0
 end
 
 association MarriageWife between
