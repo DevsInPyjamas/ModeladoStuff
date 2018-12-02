@@ -1,0 +1,74 @@
+reset
+!new System('S')
+!new Clock('clock')
+!insert (S, clock) into ClockSystem
+-- delay 500
+!new Person('Pepa')
+!insert (S, Pepa) into Community
+!clock.tick()
+!new Person('Alfredo')
+!insert (S, Alfredo) into Community
+!new Person('Joe')
+!insert (S, Joe) into Community
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!Alfredo.kill() -- sus padres no le vacunaron........... F
+!new Person('Jules')
+!insert (S, Jules) into Community
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!new Person('Frasquito')
+!insert (S, Frasquito) into Community
+!clock.tick()
+!clock.tick()
+!new Person('Juana')
+!insert (S, Juana) into Community
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!new Person('Teresa')
+!insert (S, Teresa) into Community
+!clock.tick()
+!clock.tick()
+!S.marry(Pepa, Joe)
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!new Person('Paco')
+!insert (S, Paco) into Community
+!clock.tick()
+!clock.tick()
+!Joe.kill() -- F
+!clock.tick()
+!clock.tick()
+!S.marry(Jules, Frasquito)
+!clock.tick()
+!clock.tick()
+!new Person('Antonio')
+!insert (S, Antonio) into Community
+!new Person('Antonia')
+!insert (S, Antonia) into Community
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!Jules.kill() -- F
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!Frasquito.kill() -- F
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!S.marry(Paco, Antonia)
+!S.marry(Juana, Antonio)
+!clock.tick()
+!Juana.kill() -- F
+delay 0
