@@ -10,24 +10,6 @@
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
-    <node id="Adult" sizeCalculated="true" type="StateNode">
-        <name>Adult</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>315.0379662024818</x>
-            <y>236.0</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
-    <node id="Elder" sizeCalculated="true" type="StateNode">
-        <name>Elder</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>15.015911681934767</x>
-            <y>207.15775695031778</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
     <node id="Young" sizeCalculated="true" type="StateNode">
         <name>Young</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
@@ -37,20 +19,20 @@
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
     </node>
-    <node id="Kid" sizeCalculated="true" type="StateNode">
-        <name>Kid</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>212.4094600868891</x>
-            <y>69.94358809655839</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
     <node id="Dead" sizeCalculated="true" type="StateNode">
         <name>Dead</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
             <x>203.94108772130858</x>
             <y>160.47262220021042</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
+        <hidden>false</hidden>
+    </node>
+    <node id="Kid" sizeCalculated="true" type="StateNode">
+        <name>Kid</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>212.4094600868891</x>
+            <y>69.94358809655839</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
@@ -78,6 +60,24 @@
             </strategy>
             <hidden>false</hidden>
         </node>
+        <hidden>false</hidden>
+    </node>
+    <node id="Elder" sizeCalculated="true" type="StateNode">
+        <name>Elder</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>15.015911681934767</x>
+            <y>207.15775695031778</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
+        <hidden>false</hidden>
+    </node>
+    <node id="Adult" sizeCalculated="true" type="StateNode">
+        <name>Adult</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>315.0379662024818</x>
+            <y>236.0</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
         <hidden>false</hidden>
     </node>
     <edge type="Transition">
@@ -136,11 +136,11 @@
         </Transitions>
     </edge>
     <edge type="Transition">
-        <source>Elder</source>
+        <source>Kid</source>
         <target>Dead</target>
         <name>kill()/</name>
         <waypoints>
-            <edgeproperty id="transition::Elder::Dead::::WayPoint::0"
+            <edgeproperty id="transition::Kid::Dead::::WayPoint::0"
                 sizeCalculated="true" type="WayPoint"
                 userDefined="false" visible="true">
                 <name>0</name>
@@ -152,7 +152,7 @@
                 <specialid>1</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="transition::Elder::Dead::::WayPoint::1"
+            <edgeproperty id="transition::Kid::Dead::::WayPoint::1"
                 sizeCalculated="true" type="WayPoint"
                 userDefined="false" visible="true">
                 <name>1</name>
@@ -172,16 +172,124 @@
                 <guard/>
                 <post/>
                 <edgeproperty id="kill()/" sizeCalculated="true"
-                    type="TransitionLabel" userDefined="false" visible="true">
+                    type="TransitionLabel" userDefined="true" visible="true">
                     <name>kill()/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>0.0</userOffsetX>
-                        <userOffsetY>0.0</userOffsetY>
+                        <userOffsetX>-9.0</userOffsetX>
+                        <userOffsetY>3.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
-                            <related0>transition::Elder::Dead::::WayPoint::0</related0>
-                            <related1>transition::Elder::Dead::::WayPoint::1</related1>
+                            <related0>transition::Kid::Dead::::WayPoint::0</related0>
+                            <related1>transition::Kid::Dead::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Adult</source>
+        <target>Dead</target>
+        <name>kill()/</name>
+        <waypoints>
+            <edgeproperty id="transition::Adult::Dead::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Adult::Dead::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>kill()</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="kill()/" sizeCalculated="true"
+                    type="TransitionLabel" userDefined="true" visible="true">
+                    <name>kill()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>-12.0</userOffsetX>
+                        <userOffsetY>-3.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Adult::Dead::::WayPoint::0</related0>
+                            <related1>transition::Adult::Dead::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Young</source>
+        <target>Dead</target>
+        <name>kill()/</name>
+        <waypoints>
+            <edgeproperty id="transition::Young::Dead::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Young::Dead::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>kill()</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="kill()/" sizeCalculated="true"
+                    type="TransitionLabel" userDefined="true" visible="true">
+                    <name>kill()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>10.0</userOffsetX>
+                        <userOffsetY>6.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Young::Dead::::WayPoint::0</related0>
+                            <related1>transition::Young::Dead::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>
@@ -314,6 +422,169 @@
                         <related length="2">
                             <related0>transition::Elder::Elder::::WayPoint::0</related0>
                             <related1>transition::Elder::Elder::::WayPoint::4</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>s</source>
+        <target>Kid</target>
+        <name>/</name>
+        <waypoints>
+            <edgeproperty id="transition::s::Kid::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::s::Kid::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger/>
+                <guard/>
+                <post/>
+                <edgeproperty id="/" sizeCalculated="true"
+                    type="TransitionLabel" userDefined="false" visible="true">
+                    <name>/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::s::Kid::::WayPoint::0</related0>
+                            <related1>transition::s::Kid::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Kid</source>
+        <target>Young</target>
+        <name>[(self.age = 11)] birthday()/</name>
+        <waypoints>
+            <edgeproperty id="transition::Kid::Young::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Kid::Young::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>birthday()</trigger>
+                <guard>(self.age = 11)</guard>
+                <post/>
+                <edgeproperty id="[(self.age = 11)] birthday()/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="true" visible="true">
+                    <name>[(self.age = 11)] birthday()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>-15.0</userOffsetX>
+                        <userOffsetY>1.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Kid::Young::::WayPoint::0</related0>
+                            <related1>transition::Kid::Young::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Elder</source>
+        <target>Dead</target>
+        <name>kill()/</name>
+        <waypoints>
+            <edgeproperty id="transition::Elder::Dead::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Elder::Dead::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>kill()</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="kill()/" sizeCalculated="true"
+                    type="TransitionLabel" userDefined="false" visible="true">
+                    <name>kill()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Elder::Dead::::WayPoint::0</related0>
+                            <related1>transition::Elder::Dead::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>
@@ -455,52 +726,129 @@
     </edge>
     <edge type="Transition">
         <source>Kid</source>
-        <target>Young</target>
-        <name>[(self.age = 11)] birthday()/</name>
+        <target>Kid</target>
+        <name>[(self.age &lt; 11)] birthday()/</name>
         <waypoints>
-            <edgeproperty id="transition::Kid::Young::::WayPoint::0"
+            <edgeproperty id="transition::Kid::Kid::::WayPoint::0"
                 sizeCalculated="true" type="WayPoint"
                 userDefined="false" visible="true">
                 <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>0.0</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Kid</relativeNodeId>
                 </strategy>
                 <id>0</id>
                 <specialid>1</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
-            <edgeproperty id="transition::Kid::Young::::WayPoint::1"
+            <edgeproperty id="transition::Kid::Kid::::WayPoint::1"
                 sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
+                userDefined="false" visible="false">
                 <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
                     <userOffsetX>0.0</userOffsetX>
                     <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Kid</relativeNodeId>
                 </strategy>
                 <id>1</id>
+                <specialid>3</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Kid::Kid::::WayPoint::2"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>2</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Kid</relativeNodeId>
+                </strategy>
+                <id>2</id>
+                <specialid>4</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Kid::Kid::::WayPoint::3"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>3</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Kid</relativeNodeId>
+                </strategy>
+                <id>3</id>
+                <specialid>5</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Kid::Kid::::WayPoint::4"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>4</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>0.0</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Kid</relativeNodeId>
+                </strategy>
+                <id>4</id>
                 <specialid>2</specialid>
                 <hidden>false</hidden>
             </edgeproperty>
         </waypoints>
         <hidden>false</hidden>
+        <reflexivePosition>NORTH_EAST</reflexivePosition>
         <Transitions>
             <Transition>
                 <trigger>birthday()</trigger>
-                <guard>(self.age = 11)</guard>
+                <guard>(self.age &lt; 11)</guard>
                 <post/>
-                <edgeproperty id="[(self.age = 11)] birthday()/"
+                <edgeproperty id="[(self.age &lt; 11)] birthday()/"
                     sizeCalculated="true" type="TransitionLabel"
                     userDefined="true" visible="true">
-                    <name>[(self.age = 11)] birthday()/</name>
+                    <name>[(self.age &lt; 11)] birthday()/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>-15.0</userOffsetX>
-                        <userOffsetY>1.0</userOffsetY>
+                        <userOffsetX>45.0</userOffsetX>
+                        <userOffsetY>-71.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
-                            <related0>transition::Kid::Young::::WayPoint::0</related0>
-                            <related1>transition::Kid::Young::::WayPoint::1</related1>
+                            <related0>transition::Kid::Kid::::WayPoint::0</related0>
+                            <related1>transition::Kid::Kid::::WayPoint::4</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>
@@ -641,246 +989,6 @@
         </Transitions>
     </edge>
     <edge type="Transition">
-        <source>Young</source>
-        <target>Dead</target>
-        <name>kill()/</name>
-        <waypoints>
-            <edgeproperty id="transition::Young::Dead::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::Young::Dead::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>kill()</trigger>
-                <guard/>
-                <post/>
-                <edgeproperty id="kill()/" sizeCalculated="true"
-                    type="TransitionLabel" userDefined="true" visible="true">
-                    <name>kill()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>10.0</userOffsetX>
-                        <userOffsetY>6.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::Young::Dead::::WayPoint::0</related0>
-                            <related1>transition::Young::Dead::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>Kid</source>
-        <target>Kid</target>
-        <name>[(self.age &lt; 11)] birthday()/</name>
-        <waypoints>
-            <edgeproperty id="transition::Kid::Kid::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <basisDeltaX>ABSOLUTE</basisDeltaX>
-                    <deltaX>0.0</deltaX>
-                    <maxDeltaX>0.0</maxDeltaX>
-                    <basisDeltaY>RELATIVE</basisDeltaY>
-                    <deltaY>-0.3333</deltaY>
-                    <maxDeltaY>66.66</maxDeltaY>
-                    <corner>NORTH_EAST</corner>
-                    <relativeNodeId>Kid</relativeNodeId>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::Kid::Kid::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="false">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <basisDeltaX>RELATIVE</basisDeltaX>
-                    <deltaX>0.6666</deltaX>
-                    <maxDeltaX>133.32</maxDeltaX>
-                    <basisDeltaY>RELATIVE</basisDeltaY>
-                    <deltaY>-0.3333</deltaY>
-                    <maxDeltaY>66.66</maxDeltaY>
-                    <corner>NORTH_EAST</corner>
-                    <relativeNodeId>Kid</relativeNodeId>
-                </strategy>
-                <id>1</id>
-                <specialid>3</specialid>
-                <hidden>true</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::Kid::Kid::::WayPoint::2"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="false">
-                <name>2</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <basisDeltaX>RELATIVE</basisDeltaX>
-                    <deltaX>0.6666</deltaX>
-                    <maxDeltaX>133.32</maxDeltaX>
-                    <basisDeltaY>RELATIVE</basisDeltaY>
-                    <deltaY>0.6666</deltaY>
-                    <maxDeltaY>133.32</maxDeltaY>
-                    <corner>NORTH_EAST</corner>
-                    <relativeNodeId>Kid</relativeNodeId>
-                </strategy>
-                <id>2</id>
-                <specialid>4</specialid>
-                <hidden>true</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::Kid::Kid::::WayPoint::3"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="false">
-                <name>3</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <basisDeltaX>RELATIVE</basisDeltaX>
-                    <deltaX>-0.3333</deltaX>
-                    <maxDeltaX>66.66</maxDeltaX>
-                    <basisDeltaY>RELATIVE</basisDeltaY>
-                    <deltaY>0.6666</deltaY>
-                    <maxDeltaY>133.32</maxDeltaY>
-                    <corner>NORTH_EAST</corner>
-                    <relativeNodeId>Kid</relativeNodeId>
-                </strategy>
-                <id>3</id>
-                <specialid>5</specialid>
-                <hidden>true</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::Kid::Kid::::WayPoint::4"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>4</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <basisDeltaX>RELATIVE</basisDeltaX>
-                    <deltaX>-0.3333</deltaX>
-                    <maxDeltaX>66.66</maxDeltaX>
-                    <basisDeltaY>ABSOLUTE</basisDeltaY>
-                    <deltaY>0.0</deltaY>
-                    <maxDeltaY>0.0</maxDeltaY>
-                    <corner>NORTH_EAST</corner>
-                    <relativeNodeId>Kid</relativeNodeId>
-                </strategy>
-                <id>4</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <reflexivePosition>NORTH_EAST</reflexivePosition>
-        <Transitions>
-            <Transition>
-                <trigger>birthday()</trigger>
-                <guard>(self.age &lt; 11)</guard>
-                <post/>
-                <edgeproperty id="[(self.age &lt; 11)] birthday()/"
-                    sizeCalculated="true" type="TransitionLabel"
-                    userDefined="true" visible="true">
-                    <name>[(self.age &lt; 11)] birthday()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>45.0</userOffsetX>
-                        <userOffsetY>-71.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::Kid::Kid::::WayPoint::0</related0>
-                            <related1>transition::Kid::Kid::::WayPoint::4</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>Adult</source>
-        <target>Dead</target>
-        <name>kill()/</name>
-        <waypoints>
-            <edgeproperty id="transition::Adult::Dead::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::Adult::Dead::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>kill()</trigger>
-                <guard/>
-                <post/>
-                <edgeproperty id="kill()/" sizeCalculated="true"
-                    type="TransitionLabel" userDefined="true" visible="true">
-                    <name>kill()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>-12.0</userOffsetX>
-                        <userOffsetY>-3.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::Adult::Dead::::WayPoint::0</related0>
-                            <related1>transition::Adult::Dead::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
         <source>Adult</source>
         <target>Elder</target>
         <name>[(self.age = 67)] birthday()/</name>
@@ -928,114 +1036,6 @@
                         <related length="2">
                             <related0>transition::Adult::Elder::::WayPoint::0</related0>
                             <related1>transition::Adult::Elder::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>s</source>
-        <target>Kid</target>
-        <name>/</name>
-        <waypoints>
-            <edgeproperty id="transition::s::Kid::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::s::Kid::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger/>
-                <guard/>
-                <post/>
-                <edgeproperty id="/" sizeCalculated="true"
-                    type="TransitionLabel" userDefined="false" visible="true">
-                    <name>/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>0.0</userOffsetX>
-                        <userOffsetY>0.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::s::Kid::::WayPoint::0</related0>
-                            <related1>transition::s::Kid::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>Kid</source>
-        <target>Dead</target>
-        <name>kill()/</name>
-        <waypoints>
-            <edgeproperty id="transition::Kid::Dead::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::Kid::Dead::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>kill()</trigger>
-                <guard/>
-                <post/>
-                <edgeproperty id="kill()/" sizeCalculated="true"
-                    type="TransitionLabel" userDefined="true" visible="true">
-                    <name>kill()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>-9.0</userOffsetX>
-                        <userOffsetY>3.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::Kid::Dead::::WayPoint::0</related0>
-                            <related1>transition::Kid::Dead::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>

@@ -14,7 +14,6 @@
 --!new Person('Pepa')
 !insert (S, Joe) into Community
 !insert (S, Jules) into Community
-!new Marriage('m')
 --!insert (S, Teresa) into Community
 --!insert (S, Antonio) into Community
 --!insert (S, Antonio) into Community
@@ -24,18 +23,15 @@
 --!insert (S, Frasquito) into Community
 --!insert (S, Pepa) into Community
 -- !S.marry(Joe, Jules)
-step on
-!m.weddingDate:=clock.now;
-!m.finishDate:=-1;
-!insert(Joe, m) into MarriageHusband;
-!insert(Jules, m) into MarriageWife;
 -- !S.marry(Jules, Joe)
 open test2.soil
 open test2.soil
 step on
--- !S.marry(Jules, Joe)
+!S.marry(Jules, Joe)
 open test2.soil
+!S.divorce(Jules, Joe)
 step on
+-- !S.marry(Joe, Jules)
 !Jules.kill()
 open test2.soil
 open test2.soil

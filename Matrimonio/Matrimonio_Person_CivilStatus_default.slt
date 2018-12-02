@@ -10,11 +10,20 @@
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
+    <node id="Married" sizeCalculated="true" type="StateNode">
+        <name>Married</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>183.65970684452714</x>
+            <y>216.93695401799533</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
+        <hidden>false</hidden>
+    </node>
     <node id="Divorced" sizeCalculated="true" type="StateNode">
         <name>Divorced</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>270.0357949507676</x>
-            <y>150.68451109982004</y>
+            <x>175.03579495076758</x>
+            <y>46.68451109982004</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
@@ -44,11 +53,11 @@
         </node>
         <hidden>false</hidden>
     </node>
-    <node id="Married" sizeCalculated="true" type="StateNode">
-        <name>Married</name>
+    <node id="Widowed" sizeCalculated="true" type="StateNode">
+        <name>Widowed</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>172.65970684452714</x>
-            <y>147.93695401799533</y>
+            <x>409.7845346107827</x>
+            <y>22.187425828972223</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
@@ -63,15 +72,390 @@
         <showInvariant>false</showInvariant>
         <hidden>false</hidden>
     </node>
-    <node id="Widowed" sizeCalculated="true" type="StateNode">
-        <name>Widowed</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>409.7845346107827</x>
-            <y>22.187425828972223</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
+    <edge type="Transition">
+        <source>Divorced</source>
+        <target>Married</target>
+        <name>marry(m : Marriage)/</name>
+        <waypoints>
+            <edgeproperty
+                id="transition::Divorced::Married::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Divorced::Married::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
         <hidden>false</hidden>
-    </node>
+        <Transitions>
+            <Transition>
+                <trigger>marry(m : Marriage)</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="marry(m : Marriage)/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="false" visible="true">
+                    <name>marry(m : Marriage)/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Divorced::Married::::WayPoint::0</related0>
+                            <related1>transition::Divorced::Married::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Single</source>
+        <target>Single</target>
+        <name>notifySpouseDead(p : Person)/</name>
+        <waypoints>
+            <edgeproperty id="transition::Single::Single::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>0.0</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Single</relativeNodeId>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Single::Single::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Single</relativeNodeId>
+                </strategy>
+                <id>1</id>
+                <specialid>3</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Single::Single::::WayPoint::2"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>2</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Single</relativeNodeId>
+                </strategy>
+                <id>2</id>
+                <specialid>4</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Single::Single::::WayPoint::3"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>3</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Single</relativeNodeId>
+                </strategy>
+                <id>3</id>
+                <specialid>5</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Single::Single::::WayPoint::4"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>4</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>0.0</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Single</relativeNodeId>
+                </strategy>
+                <id>4</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <reflexivePosition>NORTH_EAST</reflexivePosition>
+        <Transitions>
+            <Transition>
+                <trigger>notifySpouseDead(p : Person)</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="notifySpouseDead(p : Person)/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="false" visible="true">
+                    <name>notifySpouseDead(p : Person)/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Single::Single::::WayPoint::0</related0>
+                            <related1>transition::Single::Single::::WayPoint::4</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Widowed</source>
+        <target>Widowed</target>
+        <name>notifySpouseDead(p : Person)/</name>
+        <waypoints>
+            <edgeproperty
+                id="transition::Widowed::Widowed::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>0.0</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Widowed</relativeNodeId>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Widowed::Widowed::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Widowed</relativeNodeId>
+                </strategy>
+                <id>1</id>
+                <specialid>3</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Widowed::Widowed::::WayPoint::2"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>2</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Widowed</relativeNodeId>
+                </strategy>
+                <id>2</id>
+                <specialid>4</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Widowed::Widowed::::WayPoint::3"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>3</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Widowed</relativeNodeId>
+                </strategy>
+                <id>3</id>
+                <specialid>5</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Widowed::Widowed::::WayPoint::4"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>4</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>0.0</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Widowed</relativeNodeId>
+                </strategy>
+                <id>4</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <reflexivePosition>NORTH_EAST</reflexivePosition>
+        <Transitions>
+            <Transition>
+                <trigger>notifySpouseDead(p : Person)</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="notifySpouseDead(p : Person)/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="false" visible="true">
+                    <name>notifySpouseDead(p : Person)/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Widowed::Widowed::::WayPoint::0</related0>
+                            <related1>transition::Widowed::Widowed::::WayPoint::4</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Married</source>
+        <target>Widowed</target>
+        <name>[self.isMarried()] notifySpouseDead(p : Person)/</name>
+        <waypoints>
+            <edgeproperty
+                id="transition::Married::Widowed::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Married::Widowed::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>notifySpouseDead(p : Person)</trigger>
+                <guard>self.isMarried()</guard>
+                <post/>
+                <edgeproperty
+                    id="[self.isMarried()] notifySpouseDead(p : Person)/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="false" visible="true">
+                    <name>[self.isMarried()] notifySpouseDead(p : Person)/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Married::Widowed::::WayPoint::0</related0>
+                            <related1>transition::Married::Widowed::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
     <edge type="Transition">
         <source>s</source>
         <target>Single</target>
@@ -127,9 +511,146 @@
         </Transitions>
     </edge>
     <edge type="Transition">
+        <source>Divorced</source>
+        <target>Divorced</target>
+        <name>notifySpouseDead(p : Person)/</name>
+        <waypoints>
+            <edgeproperty
+                id="transition::Divorced::Divorced::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>0.0</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Divorced</relativeNodeId>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Divorced::Divorced::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Divorced</relativeNodeId>
+                </strategy>
+                <id>1</id>
+                <specialid>3</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Divorced::Divorced::::WayPoint::2"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>2</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Divorced</relativeNodeId>
+                </strategy>
+                <id>2</id>
+                <specialid>4</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Divorced::Divorced::::WayPoint::3"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>3</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Divorced</relativeNodeId>
+                </strategy>
+                <id>3</id>
+                <specialid>5</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Divorced::Divorced::::WayPoint::4"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>4</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>0.0</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Divorced</relativeNodeId>
+                </strategy>
+                <id>4</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <reflexivePosition>NORTH_EAST</reflexivePosition>
+        <Transitions>
+            <Transition>
+                <trigger>notifySpouseDead(p : Person)</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="notifySpouseDead(p : Person)/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="false" visible="true">
+                    <name>notifySpouseDead(p : Person)/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Divorced::Divorced::::WayPoint::0</related0>
+                            <related1>transition::Divorced::Divorced::::WayPoint::4</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
         <source>Single</source>
         <target>Married</target>
-        <name>marry()/</name>
+        <name>marry(m : Marriage)/</name>
         <waypoints>
             <edgeproperty
                 id="transition::Single::Married::::WayPoint::0"
@@ -175,12 +696,13 @@
         <hidden>false</hidden>
         <Transitions>
             <Transition>
-                <trigger>marry()</trigger>
+                <trigger>marry(m : Marriage)</trigger>
                 <guard/>
                 <post/>
-                <edgeproperty id="marry()/" sizeCalculated="true"
-                    type="TransitionLabel" userDefined="true" visible="true">
-                    <name>marry()/</name>
+                <edgeproperty id="marry(m : Marriage)/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="true" visible="true">
+                    <name>marry(m : Marriage)/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
                         <userOffsetX>6.0</userOffsetX>
                         <userOffsetY>-90.0</userOffsetY>
@@ -198,8 +720,144 @@
     </edge>
     <edge type="Transition">
         <source>Married</source>
+        <target>Married</target>
+        <name>kill()/</name>
+        <waypoints>
+            <edgeproperty
+                id="transition::Married::Married::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>0.0</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Married</relativeNodeId>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Married::Married::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Married</relativeNodeId>
+                </strategy>
+                <id>1</id>
+                <specialid>3</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Married::Married::::WayPoint::2"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>2</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Married</relativeNodeId>
+                </strategy>
+                <id>2</id>
+                <specialid>4</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Married::Married::::WayPoint::3"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>3</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Married</relativeNodeId>
+                </strategy>
+                <id>3</id>
+                <specialid>5</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Married::Married::::WayPoint::4"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>4</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>0.0</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Married</relativeNodeId>
+                </strategy>
+                <id>4</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <reflexivePosition>NORTH_EAST</reflexivePosition>
+        <Transitions>
+            <Transition>
+                <trigger>kill()</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="kill()/" sizeCalculated="true"
+                    type="TransitionLabel" userDefined="false" visible="true">
+                    <name>kill()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>0.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Married::Married::::WayPoint::0</related0>
+                            <related1>transition::Married::Married::::WayPoint::4</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Married</source>
         <target>Divorced</target>
-        <name>[self.isMarried()] divorce()/</name>
+        <name>[self.isMarried()] divorce(m : Marriage)/</name>
         <waypoints>
             <edgeproperty
                 id="transition::Married::Divorced::::WayPoint::0"
@@ -231,13 +889,14 @@
         <hidden>false</hidden>
         <Transitions>
             <Transition>
-                <trigger>divorce()</trigger>
+                <trigger>divorce(m : Marriage)</trigger>
                 <guard>self.isMarried()</guard>
                 <post/>
-                <edgeproperty id="[self.isMarried()] divorce()/"
+                <edgeproperty
+                    id="[self.isMarried()] divorce(m : Marriage)/"
                     sizeCalculated="true" type="TransitionLabel"
                     userDefined="false" visible="true">
-                    <name>[self.isMarried()] divorce()/</name>
+                    <name>[self.isMarried()] divorce(m : Marriage)/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
                         <userOffsetX>0.0</userOffsetX>
                         <userOffsetY>0.0</userOffsetY>
@@ -246,63 +905,6 @@
                         <related length="2">
                             <related0>transition::Married::Divorced::::WayPoint::0</related0>
                             <related1>transition::Married::Divorced::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>Married</source>
-        <target>Widowed</target>
-        <name>notifySpouseDead(p : Person)/</name>
-        <waypoints>
-            <edgeproperty
-                id="transition::Married::Widowed::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="transition::Married::Widowed::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>notifySpouseDead(p : Person)</trigger>
-                <guard/>
-                <post/>
-                <edgeproperty id="notifySpouseDead(p : Person)/"
-                    sizeCalculated="true" type="TransitionLabel"
-                    userDefined="false" visible="true">
-                    <name>notifySpouseDead(p : Person)/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>0.0</userOffsetX>
-                        <userOffsetY>0.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::Married::Widowed::::WayPoint::0</related0>
-                            <related1>transition::Married::Widowed::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>

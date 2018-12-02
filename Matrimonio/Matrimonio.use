@@ -17,6 +17,25 @@ end
 
 class System
 operations
+    divorce(p1: Person, p2: Person)
+    begin
+        declare currentMarriage:Marriage;
+        currentMarriage := p1.husband->union(p1.wife)->select(m | m.finishDate = -1)
+                      ->asSequence()->first();
+        p1.divorce(currentMarriage);
+        p2.divorce(currentMarriage);
+        currentMarriage.finishDate := self.clock.now;
+    end
+    pre activeMarriageAndSamePersons:
+            p1.husband->union(p1.wife)->select(m | m.finishDate = -1)
+            ->asSet()->intersection(p2.husband->union(p2.wife)->select(m | m.finishDate = -1)
+            ->asSet())->size() = 1
+    post currentMarriagesFinished:
+        p1.husband->union(p1.wife)
+            ->forAll(m | m.finishDate<=p1.system.clock.now@pre)
+            and
+        p2.husband->union(p2.wife)
+        ->forAll(m | m.finishDate<=p2.system.clock.now@pre)
   marry(p1:Person, p2:Person)
     begin
       declare m:Marriage;
@@ -25,8 +44,8 @@ operations
       m.finishDate:=-1;
       insert(p1, m) into MarriageHusband;
       insert(p2, m) into MarriageWife;
-      p1.marry();
-      p2.marry();
+      p1.marry(m);
+      p2.marry(m);
     end
     pre noKiddosAllowed: p1.age > 12 and p2.age > 12
     pre notMyself: p1<>p2
@@ -49,15 +68,19 @@ attributes
   isDead:Boolean derive = deathDate<>-1
 operations
   marriages(): Integer = self.wife->union(self.husband)->size()
-  isMarried(): Boolean= self.wife->union(self.husband)-> exists(m | m.finishDate=-1)
-  marry()
+  isMarried(): Boolean= self.wife->union(self.husband)->exists(m | m.finishDate=-1)
+  marry(m: Marriage)
   begin
+    m.counter := m.counter + 1
   end
+  pre marryNow: m.weddingDate = system.clock.now
+  pre justOneCall: m.counter < 2
+  post increment: m.counter = m.counter@pre+1
   birthday()
     begin
       self.age:=self.age+1
     end
-    pre: system.clock.now>birthdate+age
+    pre: system.clock.now > birthdate + age
     post: self.age = self.age@pre + 1
   notifySpouseDead(p:Person)
     begin
@@ -89,13 +112,16 @@ operations
     post everyMarriageEnd:
       self.husband->union(self.wife)
       ->forAll(m | m.finishDate<=self.system.clock.now@pre)
-  divorce()
+  divorce(m: Marriage)
     begin
+        m.counter := m.counter - 1
     end
     pre activeMarriage: self.isMarried()
+    pre noMoreDivorces: m.counter > 0
+    post counterDecreased: m.counter = m.counter@pre - 1
     post everyMarriageEnd:
       self.husband->union(self.wife)
-      ->forAll(m | m.finishDate<=self.system.clock.now@pre)
+      ->forAll(m | m.finishDate <= self.system.clock.now@pre)
  statemachines
       psm LifeCycle
         states
@@ -129,8 +155,13 @@ operations
       transitions
           s -> Single
           Single -> Married { marry() }
-          Married -> Widowed { notifySpouseDead() }
+          Married -> Widowed { [self.isMarried()] notifySpouseDead() }
           Married -> Divorced { [self.isMarried()] divorce() }
+          Divorced -> Married { marry() }
+          Divorced -> Divorced { kill() }
+          Married -> Married { kill() }
+          Single -> Single { kill() }
+          Widowed -> Widowed { kill() }
       end
 end
 
@@ -138,6 +169,7 @@ class Marriage
 attributes
   weddingDate:Integer
   finishDate:Integer
+  counter: Integer init: 0
 end
 
 association MarriageWife between
