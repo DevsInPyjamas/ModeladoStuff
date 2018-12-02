@@ -54,6 +54,7 @@ reset
 !clock.tick()
 !clock.tick()
 !clock.tick()
+!S.divorce(Jules, Frasquito)
 !clock.tick()
 !Jules.kill() -- F
 !clock.tick()
@@ -70,5 +71,15 @@ reset
 !S.marry(Paco, Antonia)
 !S.marry(Juana, Antonio)
 !clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!S.divorce(Paco, Antonia)
 !Juana.kill() -- F
 delay 0
