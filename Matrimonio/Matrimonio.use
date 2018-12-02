@@ -137,7 +137,7 @@ operations
             Young -> Adult { [self.age = 17] birthday() }
             Adult -> Adult { [self.age < 67] birthday() }
             Adult -> Elder { [self.age = 67] birthday() }
-            Elder -> Elder { [self.age > 68] birthday() }
+            Elder -> Elder { birthday() }
     end
     psm CivilStatus
       states
@@ -156,6 +156,7 @@ operations
           Married -> Married { kill() }
           Single -> Single { kill() }
           Widowed -> Widowed { kill() }
+          Widowed -> Married { marry() }
       end
 end
 
