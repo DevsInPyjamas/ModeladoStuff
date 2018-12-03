@@ -44,8 +44,8 @@ operations
       m.finishDate:=-1;
       insert(p1, m) into MarriageHusband;
       insert(p2, m) into MarriageWife;
-      p1.marry(m);
-      p2.marry(m);
+      p1.marry(m, p2);
+      p2.marry(m, p1);
     end
     pre noKiddosAllowed: p1.age > 12 and p2.age > 12
     pre notMyself: p1<>p2
@@ -69,10 +69,12 @@ attributes
 operations
   marriages(): Integer = self.wife->union(self.husband)->size()
   isMarried(): Boolean= self.wife->union(self.husband)->exists(m | m.finishDate=-1)
-  marry(m: Marriage)
-  begin
-  end
-  pre marryNow: m.weddingDate = system.clock.now
+  marry(m: Marriage, p: Person)
+    begin
+    end
+    pre marriageExist: m.weddingDate = system.clock.now
+    pre marriedWithTheOther: m.husband = self and m.wife = p or
+                             m.husband = p and m.wife = self
   birthday()
     begin
       self.age:=self.age+1
