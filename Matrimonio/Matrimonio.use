@@ -42,7 +42,7 @@ operations
         p2.husband->union(p2.wife)
         ->forAll(m | m.finishDate<=p2.system.clock.now@pre)
 
-  
+
 class Person
 attributes
   age:Integer init: 0
@@ -73,7 +73,7 @@ operations
       self.isMarried() and
       (activeMarriage.husband = p or activeMarriage.wife = p)
     pre spouseIsDead: p.isDead
-    -- post: self.oclIsInState(Widowed)
+
   kill()
     begin
       self.deathDate := self.system.clock.now;
