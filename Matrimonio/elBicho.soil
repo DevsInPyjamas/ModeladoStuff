@@ -2,7 +2,7 @@
 !new System('S')
 !new Clock('clock')
 !insert (S, clock) into ClockSystem
-delay 500
+-- delay 500
 !new Person('Joe')
 !insert (S, Joe) into Community
 !new Person('Jules')

@@ -1,35 +1,57 @@
 -- reset
-!new System('S')
+!new System('Espanya')
 !new Clock('clock')
-!insert (S, clock) into ClockSystem
+!insert (Espanya, clock) into ClockSystem
 !new Person('Joe')
 !new Person('Jules')
---!new Person('Teresa')
---!new Person('Antonia')
---!new Person('Antonio')
---!new Person('Juana')
---!new Person('Paco')
---!new Person('Alfredo')
---!new Person('Frasquito')
---!new Person('Pepa')
-!insert (S, Joe) into Community
-!insert (S, Jules) into Community
---!insert (S, Teresa) into Community
---!insert (S, Antonio) into Community
---!insert (S, Antonio) into Community
---!insert (S, Paco) into Community
---!insert (S, Alfredo) into Community
---!insert (S, Joe) into Community
---!insert (S, Frasquito) into Community
---!insert (S, Pepa) into Community
--- !S.marry(Joe, Jules)
--- !S.marry(Jules, Joe)
-open test2.soil
-open test2.soil
+!insert (Espanya, Joe) into Community
+!insert (Espanya, Jules) into Community
+!new System('Francia')
+!insert (Francia, clock) into ClockSystem
+!new Person('Jean')
+!new Person('Jeanine')
+!Espanya.marryAge := 16
+!Espanya.youngAge := 12
+!Espanya.adultAge := 18
+!Espanya.elderAge := 65
+!Francia.marryAge := 0
+!Francia.elderAge := 65
+!Francia.adultAge := 18
+!Francia.youngAge := 12
+!insert (Francia, Jean) into Community
+!insert (Francia, Jeanine) into Community
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
+!clock.tick()
 step on
-!S.marry(Jules, Joe)
-open test2.soil
-!S.divorce(Jules, Joe)
+!Espanya.marry(Jules, Joe)
+!clock.tick()
+!Espanya.divorce(Jules, Joe)
+!clock.tick()
+!Francia.marry(Jules, Joe)
+!clock.tick()
+!Francia.divorce(Jules, Joe)
+!clock.tick()
+!Francia.marry(Jules, Jeanine)
+!Francia.marry(Joe, Jean)
+!clock.tick()
 step on
 -- !S.marry(Joe, Jules)
 !Jules.kill()

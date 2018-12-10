@@ -16,6 +16,11 @@ operations
 end
 
 class System
+attributes
+    youngAge : Integer
+    adultAge : Integer
+    elderAge : Integer
+    marryAge : Integer
 operations
     divorce(p1: Person, p2: Person)
     begin
@@ -29,37 +34,15 @@ operations
     pre activeMarriageAndSamePersons:
             p1.husband->union(p1.wife)->select(m | m.finishDate = -1)
             ->asSet()->intersection(p2.husband->union(p2.wife)->select(m | m.finishDate = -1)
-            ->asSet())->size() = 1
+            ->asSet())->notEmpty()
     post currentMarriagesFinished:
         p1.husband->union(p1.wife)
             ->forAll(m | m.finishDate<=p1.system.clock.now@pre)
             and
         p2.husband->union(p2.wife)
         ->forAll(m | m.finishDate<=p2.system.clock.now@pre)
-  marry(p1:Person, p2:Person)
-    begin
-      declare m:Marriage;
-      m := new Marriage;
-      m.weddingDate:=self.clock.now;
-      m.finishDate:=-1;
-      insert(p1, m) into MarriageHusband;
-      insert(p2, m) into MarriageWife;
-      p1.marry(m);
-      p2.marry(m);
-    end
-    pre noKiddosAllowed: p1.age > 12 and p2.age > 12
-    pre notMyself: p1<>p2
-    pre bothAlive: not(p1.isDead or p2.isDead)
-    pre noOneCurrentlyMarried:
-      not (p2.isMarried() or p1.isMarried())
-    post onlyOneNewMarriage: p1.marriages() = p1.husband@pre->union(p1.wife@pre)->size() + 1 and
-                             p2.marriages() = p2.husband@pre->union(p2.wife@pre)->size() + 1
-    post newMarriage: let m:Marriage = p2.husband->select(m | m.oclIsNew())->asSequence()->first()
-                      in m.weddingDate = p2.system.clock.now
-                      and p2.husband->includes(m) and p1.wife->includes(m)
-                      and m.husband = p1 and m.wife = p2
-end
 
+  
 class Person
 attributes
   age:Integer init: 0
@@ -69,10 +52,12 @@ attributes
 operations
   marriages(): Integer = self.wife->union(self.husband)->size()
   isMarried(): Boolean= self.wife->union(self.husband)->exists(m | m.finishDate=-1)
-  marry(m: Marriage)
-  begin
-  end
-  pre marryNow: m.weddingDate = system.clock.now
+  marry(m: Marriage, p: Person)
+    begin
+    end
+    pre marriageActive: m.weddingDate = system.clock.now and m.finishDate = -1
+    pre marriedWithTheOther: m.husband = self and m.wife = p or
+                             m.husband = p and m.wife = self
   birthday()
     begin
       self.age:=self.age+1
@@ -88,6 +73,7 @@ operations
       self.isMarried() and
       (activeMarriage.husband = p or activeMarriage.wife = p)
     pre spouseIsDead: p.isDead
+    -- post: self.oclIsInState(Widowed)
   kill()
     begin
       self.deathDate := self.system.clock.now;
@@ -131,12 +117,12 @@ operations
             Young -> Dead { kill() }
             Adult -> Dead { kill() }
             Elder -> Dead { kill() }
-            Kid -> Kid { [self.age < 11] birthday ()}
-            Kid -> Young { [self.age = 11] birthday() }
-            Young -> Young { [self.age < 17] birthday() }
-            Young -> Adult { [self.age = 17] birthday() }
-            Adult -> Adult { [self.age < 67] birthday() }
-            Adult -> Elder { [self.age = 67] birthday() }
+            Kid -> Kid { [self.age < self.system.youngAge - 1] birthday ()}
+            Kid -> Young { [self.age = self.system.youngAge - 1] birthday() }
+            Young -> Young { [self.age < self.system.adultAge - 1] birthday() }
+            Young -> Adult { [self.age = self.system.adultAge - 1] birthday() }
+            Adult -> Adult { [self.age < self.system.elderAge - 1] birthday() }
+            Adult -> Elder { [self.age = self.system.elderAge - 1] birthday() }
             Elder -> Elder { birthday() }
     end
     psm CivilStatus
@@ -187,8 +173,8 @@ Person[*]
 role people
 end
 
-composition ClockSystem between
-System[1] role system
+aggregation ClockSystem between
+System[*] role system
 Clock[1] role clock
 end
 
