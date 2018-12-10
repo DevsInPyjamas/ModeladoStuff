@@ -41,7 +41,29 @@ operations
             and
         p2.husband->union(p2.wife)
         ->forAll(m | m.finishDate<=p2.system.clock.now@pre)
-
+  marry(p1:Person, p2:Person)
+    begin
+      declare m:Marriage;
+      m := new Marriage;
+      m.weddingDate:=self.clock.now;
+      m.finishDate:=-1;
+      insert(p1, m) into MarriageHusband;
+      insert(p2, m) into MarriageWife;
+      p1.marry(m, p2);
+      p2.marry(m, p1);
+    end
+    pre noKiddosAllowed: p1.age > marryAge and p2.age > marryAge
+    pre notMyself: p1<>p2
+    pre bothAlive: not(p1.isDead or p2.isDead)
+    pre noOneCurrentlyMarried:
+      not (p2.isMarried() or p1.isMarried())
+    post onlyOneNewMarriage: p1.marriages() = p1.husband@pre->union(p1.wife@pre)->size() + 1 and
+                             p2.marriages() = p2.husband@pre->union(p2.wife@pre)->size() + 1
+    post newMarriage: let m:Marriage = p2.husband->select(m | m.oclIsNew())->asSequence()->first()
+                      in m.weddingDate = p2.system.clock.now
+                      and p2.husband->includes(m) and p1.wife->includes(m)
+                      and m.husband = p1 and m.wife = p2
+end
 
 class Person
 attributes
