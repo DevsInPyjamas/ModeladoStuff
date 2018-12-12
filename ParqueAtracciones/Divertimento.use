@@ -1,0 +1,77 @@
+model Divertimento
+
+class Parque
+end
+
+class CRA
+end
+
+abstract class Transporte
+attributes
+    numero: Integer
+end
+
+class Atraccion
+attributes
+    numeroCalle: Integer
+end
+
+class Operario
+attributes
+    disponible : Boolean derive = averiaAtendida->isEmpty()
+end
+
+class Dispositivo
+attributes
+    averiasAtendidas: Integer init: 0
+end
+
+class Averia
+attributes
+    atendida : Boolean derive = operario->notEmpty()
+end
+
+class Detector
+end
+
+association Posee between
+    Parque [1] role parque
+    CRA [1] role cra
+end
+
+association Trabajan between
+    CRA [1] role cra
+    Operario [1..*] role operarios
+end
+
+association Atiende between
+    Operario [0..1] role operario
+    Averia [0..1] role averiaAtendida
+end
+
+composition Existen between
+    Parque [1] role parque
+    Atraccion [1..*] role atracciones
+end
+
+aggregation Compuesta between
+    Atraccion [1] role atraccion
+    Transporte [1..*] role transportes
+end
+
+association Poseedor between
+    Operario [1] role operario
+    Dispositivo [1] role dispositivo
+end
+
+association Surgen between
+    Transporte [1] role transporte
+    Averia [0..1] role averia
+end
+
+association Contiene between
+    Detector [1] role detector
+    Transporte [1] role transporte
+end
+
+constraints
