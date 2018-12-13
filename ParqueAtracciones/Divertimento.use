@@ -97,8 +97,6 @@ statemachines
             Pendiente -> Procesando { beginIssue() }
             Procesando -> Finalizado { finishedIssue() }
     end
-statemachines
-
 end
 
 class Detector
