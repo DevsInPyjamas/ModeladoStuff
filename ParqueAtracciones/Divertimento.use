@@ -4,18 +4,28 @@ class Parque
 end
 
 class CRA
+operations
+    averiaDetectada(transporte : trans, atr : Atraccion)
+    begin
+    end
+    pre transportePerteneceAtraccion: atr.transportes->includes(trans)
+    pre mismoParque: atr.parque = self.parque
+    post nuevaAveria: Averia.allInstances->size()-Averia.allInstances@pre->size()    = 1
 end
 
 abstract class Transporte
 attributes
-    numero: Integer
+    numeroCalle: Integer
 operations
+    -- Notification operations
     brokenTransport()
     begin
     end
     fixedTransport()
     begin
     end
+
+
 statemachines
     psm Estado
         states
@@ -155,9 +165,19 @@ association Contiene between
     Transporte [1] role transporte
 end
 
+association Anclado between
+Vagon [0..1] role anterior
+Vagon [0..1] role posterior
+
 constraints
 context Averia
 inv MismaCRAOperarios:
     self.operario.cra = self.cra
 inv MismaCRATransporte:
     self.transporte.atraccion.parque.cra = self.cra
+
+context Atraccion
+inv mismoTipoTransporte: OclIsType(Noria) implies transportes.forAll(t | t.OclIsType(Vehiculo)) and
+                OclIsType(MRusa) implies transportes.forAll(t | t.OclIsType(Vagon))
+
+Context Vagon inv noAncladoASiMismo: posterior <> anterior
