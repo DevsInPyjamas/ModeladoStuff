@@ -13,7 +13,7 @@ operations
     brokenTransport()
     begin
     end
-    fixedComponent()
+    fixedTransport()
     begin
     end
 statemachines
@@ -26,6 +26,7 @@ statemachines
             s -> Funcionando
             Funcionando -> Averiado { brokenTransport() }
             Averiado -> Funcionando { fixedTransport() }
+    end
 end
 
 class Vagon < Transporte
