@@ -65,8 +65,6 @@ class MRusa < Atraccion
 end
 
 class Operario
-attributes
-    disponible : Boolean derive = averiaAtendida->isEmpty()
 operations
     workerBusy()
     begin
@@ -90,10 +88,11 @@ end
 class Dispositivo
 attributes
     averiasAtendidas: Integer init: 0
+    opDisponible : Boolean derive = operario.averiaAtendida->isEmpty()
 end
 
 associationclass Averia between
-Transporte [0..1] role transporte
+Transporte [*] role transporte
 CRA [0..1] role cra
 attributes
     atendida : Boolean derive = operario->notEmpty()
