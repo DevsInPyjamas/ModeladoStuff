@@ -9,6 +9,23 @@ end
 abstract class Transporte
 attributes
     numero: Integer
+operations
+    brokenTransport()
+    begin
+    end
+    fixedComponent()
+    begin
+    end
+statemachines
+    psm Estado
+        states
+            s: initial
+            Averiado
+            Funcionando
+        transitions
+            s -> Funcionando
+            Funcionando -> Averiado { brokenTransport() }
+            Averiado -> Funcionando { fixedTransport() }
 end
 
 class Vagon < Transporte
