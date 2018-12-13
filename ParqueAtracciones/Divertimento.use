@@ -9,6 +9,23 @@ end
 abstract class Transporte
 attributes
     numero: Integer
+operations
+    brokenTransport()
+    begin
+    end
+    fixedComponent()
+    begin
+    end
+statemachines
+    psm Estado
+        states
+            s: initial
+            Averiado
+            Funcionando
+        transitions
+            s -> Funcionando
+            Funcionando -> Averiado { brokenTransport() }
+            Averiado -> Funcionando { fixedTransport() }
 end
 
 class Vagon < Transporte
@@ -49,6 +66,24 @@ end
 class Operario
 attributes
     disponible : Boolean derive = averiaAtendida->isEmpty()
+operations
+    workerBusy()
+    begin
+    end
+    workerReleased()
+    begin
+    end
+statemachines
+    psm Estado
+        states
+            s: initial
+            Libre
+            Ocupado
+        transitions
+            s -> Libre
+            Libre -> Ocupado { workerBusy() }
+            Ocupado -> Libre { workerReleased() }
+    end
 end
 
 class Dispositivo
@@ -61,6 +96,13 @@ Transporte [0..1] role transporte
 CRA [0..1] role cra
 attributes
     atendida : Boolean derive = operario->notEmpty()
+operations
+    beginIssue()
+    begin
+    end
+    finishedIssue()
+    begin
+    end
 statemachines
     psm Gestion
         states
@@ -70,7 +112,8 @@ statemachines
             Finalizado
         transitions
             s -> Pendiente
-            Pendiente -> Procesando {  }
+            Pendiente -> Procesando { beginIssue() }
+            Procesando -> Finalizado { finishedIssue() }
     end
 end
 

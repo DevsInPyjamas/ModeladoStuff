@@ -3,6 +3,10 @@ reset
 !new Clock('clock')
 !insert (S, clock) into ClockSystem
 -- delay 500
+!S.youngAge := 12
+!S.adultAge := 18
+!S.elderAge := 68
+!S.marryAge := 12
 !new Person('Pepa')
 !insert (S, Pepa) into Community
 !clock.tick()
