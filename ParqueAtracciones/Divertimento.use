@@ -5,7 +5,7 @@ end
 
 class CRA
 operations
-    averiaDetectada(transporte : trans, atr : Atraccion)
+    averiaDetectada(trans: Transporte, atr: Atraccion)
     begin
     end
     pre transportePerteneceAtraccion: atr.transportes->includes(trans)
@@ -166,8 +166,9 @@ association Contiene between
 end
 
 association Anclado between
-Vagon [0..1] role anterior
-Vagon [0..1] role posterior
+    Vagon [0..1] role anterior
+    Vagon [0..1] role posterior
+end
 
 constraints
 context Averia
@@ -180,4 +181,4 @@ context Atraccion
 inv mismoTipoTransporte: OclIsType(Noria) implies transportes.forAll(t | t.OclIsType(Vehiculo)) and
                 OclIsType(MRusa) implies transportes.forAll(t | t.OclIsType(Vagon))
 
-Context Vagon inv noAncladoASiMismo: posterior <> anterior
+context Vagon inv noAncladoASiMismo: posterior <> anterior
