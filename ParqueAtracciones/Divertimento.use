@@ -7,22 +7,39 @@ class CRA
 operations
     averiaDetectada(trans: Transporte, atr: Atraccion)
     begin
+        -- Esto coge el primer operario libre, hay que hacer el else para el
+        -- polling del componente + hay que añadir la nueva avería
+        --    declare a: Averia;
+        --    a := new Averia;
+        -- declare op : Operario;
+        -- op := self.operarios->select(o: Operario | o.dispositivo.opDisponible)->asSequence()->first();
+        -- if not op.oclIsUndefined() then
+        --    insert(op, a) into Atiende;
+        --    op.dispositivo.issueReceived(atr.numeroCalle, trans.numero);
+        -- else
+        -- end
     end
     pre transportePerteneceAtraccion: atr.transportes->includes(trans)
     pre mismoParque: atr.parque = self.parque
-    post nuevaAveria: Averia.allInstances->size()-Averia.allInstances@pre->size()    = 1
+    post nuevaAveria: Averia.allInstances->size()-Averia.allInstances@pre->size() = 1
 end
 
 abstract class Transporte
 attributes
-    numeroCalle: Integer
+    numero: Integer
 operations
     -- Notification operations
+    -- Si en un momento determinado se detectara pérdida de anclaje,
+    -- el correspondiente vehículo se lo comunicaría a la Central Receptora de Averías
+    -- (CRA) y también a la atracción de la que forma parte dicho vehículo
     brokenTransport()
     begin
+        self.atraccion.parque.cra.averiaDetectada(self, self.atraccion);
+        self.atraccion.brokenComponent();
     end
     fixedTransport()
     begin
+        self.atraccion.fixedComponent(); -- Esta así porque quiero probar estados
     end
 
 
@@ -78,9 +95,11 @@ class Operario
 operations
     workerBusy()
     begin
+        self.averiaAtendida.beginIssue();
     end
     workerReleased()
     begin
+        self.averiaAtendida.finishedIssue();
     end
 statemachines
     psm Estado
@@ -99,6 +118,22 @@ class Dispositivo
 attributes
     averiasAtendidas: Integer init: 0
     opDisponible : Boolean derive = operario.averiaAtendida->isEmpty()
+operations
+    issueReceived(calle: Integer, transNumero: Integer)
+    begin
+        self.operario.workerBusy();
+    end
+    pre operarioLibre: opDisponible
+    post operarioOcupado: not opDisponible
+
+    issueSolved()
+    begin
+        self.operario.workerReleased();
+        self.averiasAtendidas := self.averiasAtendidas + 1;
+    end
+    pre trabajadorOcupado: not self.opDisponible
+    post averiaIncrementada: self.averiasAtendidas = self.averiasAtendidas@pre + 1
+    post trabajadorLibre: self.opDisponible
 end
 
 associationclass Averia between
@@ -110,6 +145,7 @@ operations
     beginIssue()
     begin
     end
+
     finishedIssue()
     begin
     end
@@ -174,11 +210,21 @@ constraints
 context Averia
 inv MismaCRAOperarios:
     self.operario.cra = self.cra
+
 inv MismaCRATransporte:
     self.transporte.atraccion.parque.cra = self.cra
 
 context Atraccion
-inv mismoTipoTransporte: OclIsType(Noria) implies transportes.forAll(t | t.OclIsType(Vehiculo)) and
-                OclIsType(MRusa) implies transportes.forAll(t | t.OclIsType(Vagon))
+-- por algun motivo estas dos restricciones al estar juntas dan true
+-- casi siempre (a pesar de tener un and entre ellas)
+-- separadas en 2 funcionan
+inv siNoriaEntoncesVehiculos:
+    self.oclIsTypeOf(Noria) implies transportes.forAll(t | t.oclIsTypeOf(Vehiculo))
+inv siMRusaEntoncesVagones:
+    self.oclIsTypeOf(MRusa) implies transportes.forAll(t | t.oclIsTypeOf(Vagon))
 
-context Vagon inv noAncladoASiMismo: posterior <> anterior
+context Vagon inv noAncladoASiMismo:
+    posterior <> anterior or
+    (self.anterior->size() = 0 and self.posterior->size() = 0)
+    -- Si no se añade el size de anterior y posterior, al ser Undefined
+    -- anterior y posterior, peta porque son "iguales"
