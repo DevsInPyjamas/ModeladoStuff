@@ -5,31 +5,42 @@ end
 
 class CRA
 operations
-    averiaDetectada(trans: Transporte, atr: Atraccion): Boolean
+    averiaDetectada(trans: Transporte, atr: Atraccion)
     begin
-        declare a: Averia, op: Operario, return: Boolean;
-        return := self.operarios->select(op | op.dispositivo.opDisponible)->notEmpty();
-        if self.averia->isEmpty() then
+        declare a: Averia, op: Operario;
+        if trans.averia->isEmpty() then
             a := new Averia between (trans, self);
-            if return then
+            if self.operarios->select(op | op.dispositivo.opDisponible)->notEmpty() then
                 op := self.operarios->any(op | op.dispositivo.opDisponible);
                 insert(op, a) into Atiende;
-                op.dispositivo.sendIssue(atr.numeroCalle, trans.numero);
-                op.dispositivo.opDisponible;
+                op.dispositivo.enviarIncidencia(atr.numeroCalle, trans.numero);
+            else
+                trans.averiaNoAtendida(a);
             end
         else
-            a := self.averia->any(true);
-            if return then
+            a := trans.averia;
+            if self.operarios->select(op | op.dispositivo.opDisponible)->notEmpty() then
                 op := self.operarios->any(op | op.dispositivo.opDisponible);
                 insert(op, a) into Atiende;
-                op.dispositivo.sendIssue(atr.numeroCalle, trans.numero);
-                op.dispositivo.opDisponible;
+                op.dispositivo.enviarIncidencia(atr.numeroCalle, trans.numero);
+            else
+                trans.averiaNoAtendida(a);
             end
         end
     end
     pre transportePerteneceAtraccion: atr.transportes->includes(trans)
     pre mismoParque: atr.parque = self.parque
     post nuevaAveria: Averia.allInstances->size() = Averia.allInstances@pre->size() + 1
+
+    averiaArreglada(av: Averia)
+    begin
+        declare transporte: Transporte;
+        transporte := av.transporte;
+        destroy(av)
+    end
+    pre averiaPerteneceACRA: self.averia->includes(av)
+    pre averiaAsignadaAOperario: av.operario->notEmpty() and self.operarios->includes(av.operario)
+    post averiaEliminada: self.averia@pre->size() = self.averia->size() + 1
 end
 
 abstract class Transporte
@@ -40,15 +51,20 @@ operations
     -- Si en un momento determinado se detectara pérdida de anclaje,
     -- el correspondiente vehículo se lo comunicaría a la Central Receptora de Averías
     -- (CRA) y también a la atracción de la que forma parte dicho vehículo
-    brokenTransport()
+    romperTransporte()
     begin
-        self.atraccion.brokenComponent();
+        self.atraccion.componenteAveriado();
         self.atraccion.parque.cra.averiaDetectada(self, self.atraccion)
     end
     pre noUltimoVagon: self.oclIsTypeOf(Vagon) implies self.oclAsType(Vagon).posterior -> notEmpty()
-    fixedTransport()
+    averiaNoAtendida(averia: Averia)
     begin
-        self.atraccion.fixedComponent(); -- Esta así porque quiero probar estados
+    end
+    pre existeAveria: self.averia->notEmpty()
+    pre mismaAveria: self.averia = averia
+    arreglarTransporte()
+    begin
+        self.atraccion.arreglarComponente(); -- Esta así porque quiero probar estados
     end
     pre existeAveria: self.averia->notEmpty
     pre averiaAtendida: self.averia.atendida
@@ -63,9 +79,8 @@ statemachines
             Funcionando
         transitions
             s -> Funcionando
-            Funcionando -> Averiado { brokenTransport() }
-            Averiado -> Funcionando { fixedTransport() }
-            Averiado -> Averiado { brokenTransport() }
+            Funcionando -> Averiado { romperTransporte() }
+            Averiado -> Funcionando { arreglarTransporte() }
     end
 end
 
@@ -79,10 +94,10 @@ abstract class Atraccion
 attributes
     numeroCalle: Integer
 operations
-    fixedComponent() -- When a component is fixed and notifies this class
+    arreglarComponente() -- When a component is fixed and notifies this class
     begin
     end
-    brokenComponent() -- When a component is broken and notifies this class
+    componenteAveriado() -- When a component is broken and notifies this class
     begin
     end
 statemachines
@@ -93,10 +108,10 @@ statemachines
             Esperando
         transitions
             s -> Funcionando
-            Funcionando -> Esperando { brokenComponent() }
-            Esperando -> Funcionando { [self.transportes->collect(averia)->size()=1] fixedComponent() }
-            Esperando -> Esperando { brokenComponent() }
-            Esperando -> Esperando { [self.transportes->collect(averia)->size()>1] fixedComponent() }
+            Funcionando -> Esperando { componenteAveriado() }
+            Esperando -> Funcionando { [self.transportes->collect(averia)->size()=1] arreglarComponente() }
+            Esperando -> Esperando { componenteAveriado() }
+            Esperando -> Esperando { [self.transportes->collect(averia)->size()>1] arreglarComponente() }
     end
 end
 
@@ -108,14 +123,17 @@ end
 
 class Operario
 operations
-    workerBusy()
+    trabajadorOcupado()
     begin
-        self.averiaAtendida.beginIssue();
+        self.averiaAtendida.empezarReparacion();
+        -- Operario realiza reparación
+        self.dispositivo.incidenciaResuelta(self.averiaAtendida);
     end
-    workerReleased()
+    pre existeAveriaAReparar: self.averiaAtendida->notEmpty()
+    trabajadorLibre()
     begin
-        self.averiaAtendida.finishedIssue();
     end
+    pre ocupado: not self.dispositivo.opDisponible
 statemachines
     psm Estado
         states
@@ -124,29 +142,34 @@ statemachines
             Ocupado
         transitions
             s -> Libre
-            Libre -> Ocupado { workerBusy() }
-            Ocupado -> Libre { workerReleased() }
+            Libre -> Ocupado { trabajadorOcupado() }
+            Ocupado -> Libre { trabajadorLibre() }
     end
 end
 
 class Dispositivo
 attributes
     averiasAtendidas: Integer init: 0
-    opDisponible : Boolean init: false --derive = operario.averiaAtendida->isEmpty()
+    opDisponible : Boolean derive = operario.averiaAtendida->isEmpty()
 operations
-    sendIssue(calle: Integer, transNumero: Integer)
+    enviarIncidencia(calle: Integer, transNumero: Integer)
     begin
-        self.operario.workerBusy();
+        self.operario.trabajadorOcupado();
     end
-    pre operarioLibre: opDisponible
-    post operarioOcupado: not opDisponible
+    pre averiaEnCalleYTransporte: Averia.allInstances->collect(transporte)->asSet()
+                        ->exists(t | t = transNumero and t.atraccion.numeroCalle = calle)
 
-    issueSolved()
+
+    incidenciaResuelta(av: Averia)
     begin
-        self.operario.workerReleased();
+        declare cra: CRA;
+        cra := self.operario.cra;
+        cra.averiaArreglada(av);
         self.averiasAtendidas := self.averiasAtendidas + 1;
+        self.operario.trabajadorLibre();
     end
     pre trabajadorOcupado: not self.opDisponible
+    pre trabajadorAtiendeAveria: self.operario.averiaAtendida = av
     post averiaIncrementada: self.averiasAtendidas = self.averiasAtendidas@pre + 1
     post trabajadorLibre: self.opDisponible
 end
@@ -157,12 +180,10 @@ CRA [0..1] role cra
 attributes
     atendida : Boolean derive = operario->notEmpty()
 operations
-    beginIssue()
+    empezarReparacion()
     begin
     end
-    finishedIssue()
-    begin
-    end
+    pre existeOperarioAtendiendo: self.atendida
 
 statemachines
     psm Gestion
@@ -170,11 +191,9 @@ statemachines
             s: initial
             Pendiente
             Procesando
-            Finalizado
         transitions
             s -> Pendiente
-            Pendiente -> Procesando { beginIssue() }
-            Procesando -> Finalizado { finishedIssue() }
+            Pendiente -> Procesando { empezarReparacion() }
     end
 end
 
