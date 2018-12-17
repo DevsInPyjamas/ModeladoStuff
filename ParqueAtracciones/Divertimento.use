@@ -5,21 +5,31 @@ end
 
 class CRA
 operations
-    averiaDetectada(trans: Transporte, atr: Atraccion)
+    averiaDetectada(trans: Transporte, atr: Atraccion): Boolean
     begin
-        declare a: Averia, op: Operario;
-        a := new Averia between (trans, self);
-        op := self.operarios->any(op | op.dispositivo.opDisponible);
-        if not op.oclIsUndefined() then
-            insert(op, a) into Atiende;
-            op.dispositivo.sendIssue(atr.numeroCalle, trans.numero);
+        declare a: Averia, op: Operario, return: Boolean;
+        return := self.operarios->select(op | op.dispositivo.opDisponible)->notEmpty();
+        if self.averia->isEmpty() then
+            a := new Averia between (trans, self);
+            if return then
+                op := self.operarios->any(op | op.dispositivo.opDisponible);
+                insert(op, a) into Atiende;
+                op.dispositivo.sendIssue(atr.numeroCalle, trans.numero);
+                op.dispositivo.opDisponible;
+            end
         else
-
+            a := self.averia->any(true);
+            if return then
+                op := self.operarios->any(op | op.dispositivo.opDisponible);
+                insert(op, a) into Atiende;
+                op.dispositivo.sendIssue(atr.numeroCalle, trans.numero);
+                op.dispositivo.opDisponible;
+            end
         end
     end
     pre transportePerteneceAtraccion: atr.transportes->includes(trans)
     pre mismoParque: atr.parque = self.parque
-    post nuevaAveria: Averia.allInstances->size()-Averia.allInstances@pre->size() = 1
+    post nuevaAveria: Averia.allInstances->size() = Averia.allInstances@pre->size() + 1
 end
 
 abstract class Transporte
@@ -32,8 +42,8 @@ operations
     -- (CRA) y también a la atracción de la que forma parte dicho vehículo
     brokenTransport()
     begin
-        self.atraccion.parque.cra.averiaDetectada(self, self.atraccion);
         self.atraccion.brokenComponent();
+        self.atraccion.parque.cra.averiaDetectada(self, self.atraccion)
     end
     pre noUltimoVagon: self.oclIsTypeOf(Vagon) implies self.oclAsType(Vagon).posterior -> notEmpty()
     fixedTransport()
@@ -55,6 +65,7 @@ statemachines
             s -> Funcionando
             Funcionando -> Averiado { brokenTransport() }
             Averiado -> Funcionando { fixedTransport() }
+            Averiado -> Averiado { brokenTransport() }
     end
 end
 
@@ -79,12 +90,13 @@ statemachines
         states
             s: initial
             Funcionando
-            Averiado
+            Esperando
         transitions
             s -> Funcionando
-            Funcionando -> Averiado { brokenComponent() }
-            Averiado -> Funcionando { fixedComponent() }
-            Averiado -> Averiado { brokenComponent() }
+            Funcionando -> Esperando { brokenComponent() }
+            Esperando -> Funcionando { [self.transportes->collect(averia)->size()=1] fixedComponent() }
+            Esperando -> Esperando { brokenComponent() }
+            Esperando -> Esperando { [self.transportes->collect(averia)->size()>1] fixedComponent() }
     end
 end
 
@@ -120,7 +132,7 @@ end
 class Dispositivo
 attributes
     averiasAtendidas: Integer init: 0
-    opDisponible : Boolean derive = operario.averiaAtendida->isEmpty()
+    opDisponible : Boolean init: false --derive = operario.averiaAtendida->isEmpty()
 operations
     sendIssue(calle: Integer, transNumero: Integer)
     begin
@@ -148,10 +160,10 @@ operations
     beginIssue()
     begin
     end
-
     finishedIssue()
     begin
     end
+
 statemachines
     psm Gestion
         states

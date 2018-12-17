@@ -49,3 +49,4 @@ reset
 !insert(Felipe,D1) into Poseedor
 !new Dispositivo('D2')
 !insert(Emilio,D2) into Poseedor
+open funcs.soil
