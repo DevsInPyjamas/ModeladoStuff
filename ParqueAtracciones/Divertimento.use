@@ -45,7 +45,7 @@ end
 
 abstract class Transporte
 attributes
-    numero: Integer
+    numero: Integer 
 operations
     -- Notification operations
     -- Si en un momento determinado se detectara pérdida de anclaje,
@@ -92,7 +92,7 @@ end
 
 abstract class Atraccion
 attributes
-    numeroCalle: Integer
+    numeroCalle: Integer 
 operations
     arreglarComponente() -- When a component is fixed and notifies this class
     begin
@@ -149,7 +149,7 @@ end
 
 class Dispositivo
 attributes
-    averiasAtendidas: Integer init: 0
+    averiasAtendidas: Integer init: 0 
     opDisponible : Boolean derive = operario.averiaAtendida->isEmpty()
 operations
     enviarIncidencia(calle: Integer, transNumero: Integer)
@@ -252,6 +252,9 @@ context Atraccion
 -- por algun motivo estas dos restricciones al estar juntas dan true
 -- casi siempre (a pesar de tener un and entre ellas)
 -- separadas en 2 funcionan
+inv numeroCalleDefinido:
+	not self.numeroCalle.oclIsUndefined()
+
 inv siNoriaEntoncesVehiculos:
     self.oclIsTypeOf(Noria) implies transportes.forAll(t | t.oclIsTypeOf(Vehiculo))
 inv siMRusaEntoncesVagones:
@@ -262,3 +265,7 @@ context Vagon inv noAncladoASiMismo:
     (self.anterior->size() = 0 and self.posterior->size() = 0)
     -- Si no se añade el size de anterior y posterior, al ser Undefined
     -- anterior y posterior, peta porque son "iguales"
+
+context Transporte
+inv  numeroProyecto:
+	not self.numero.oclIsUndefined()
