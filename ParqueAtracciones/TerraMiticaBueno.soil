@@ -1,4 +1,4 @@
--- reset
+reset
 !new Parque('TerraMitica')
 !new CRA('TerraMiticaCRA')
 !insert(TerraMitica, TerraMiticaCRA) into Posee
@@ -49,6 +49,3 @@
 !insert(Felipe,D1) into Poseedor
 !new Dispositivo('D2')
 !insert(Emilio,D2) into Poseedor
-!Va3.brokenTransport()
-!Va3.fixedTransport()
--- does not change atraccion status

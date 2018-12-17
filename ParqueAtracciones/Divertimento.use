@@ -7,17 +7,15 @@ class CRA
 operations
     averiaDetectada(trans: Transporte, atr: Atraccion)
     begin
-        -- Esto coge el primer operario libre, hay que hacer el else para el
-        -- polling del componente + hay que añadir la nueva avería
-        --    declare a: Averia;
-        --    a := new Averia;
-        -- declare op : Operario;
-        -- op := self.operarios->select(o: Operario | o.dispositivo.opDisponible)->asSequence()->first();
-        -- if not op.oclIsUndefined() then
-        --    insert(op, a) into Atiende;
-        --    op.dispositivo.issueReceived(atr.numeroCalle, trans.numero);
-        -- else
-        -- end
+        declare a: Averia, op: Operario;
+        a := new Averia between (trans, self);
+        op := self.operarios->any(op | op.dispositivo.opDisponible);
+        if not op.oclIsUndefined() then
+            insert(op, a) into Atiende;
+            op.dispositivo.sendIssue(atr.numeroCalle, trans.numero);
+        else
+
+        end
     end
     pre transportePerteneceAtraccion: atr.transportes->includes(trans)
     pre mismoParque: atr.parque = self.parque
@@ -37,10 +35,14 @@ operations
         self.atraccion.parque.cra.averiaDetectada(self, self.atraccion);
         self.atraccion.brokenComponent();
     end
+    pre noUltimoVagon: self.oclIsTypeOf(Vagon) implies self.oclAsType(Vagon).posterior -> notEmpty()
     fixedTransport()
     begin
         self.atraccion.fixedComponent(); -- Esta así porque quiero probar estados
     end
+    pre existeAveria: self.averia->notEmpty
+    pre averiaAtendida: self.averia.atendida
+    post AveriaEliminada: self.averia->isEmpty
 
 
 statemachines
@@ -82,6 +84,7 @@ statemachines
             s -> Funcionando
             Funcionando -> Averiado { brokenComponent() }
             Averiado -> Funcionando { fixedComponent() }
+            Averiado -> Averiado { brokenComponent() }
     end
 end
 
@@ -119,7 +122,7 @@ attributes
     averiasAtendidas: Integer init: 0
     opDisponible : Boolean derive = operario.averiaAtendida->isEmpty()
 operations
-    issueReceived(calle: Integer, transNumero: Integer)
+    sendIssue(calle: Integer, transNumero: Integer)
     begin
         self.operario.workerBusy();
     end
