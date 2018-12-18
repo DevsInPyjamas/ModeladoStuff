@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="windows-1252"?>
 <diagram_Layout version="13">
     <diagramOptions>
         <autolayout>false</autolayout>
@@ -10,20 +10,11 @@
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
-    <node id="Finalizado" sizeCalculated="true" type="StateNode">
-        <name>Finalizado</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>188.37205794324143</x>
-            <y>43.36926426510891</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
     <node id="Pendiente" sizeCalculated="true" type="StateNode">
         <name>Pendiente</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>326.823796829012</x>
-            <y>227.16004787844076</y>
+            <x>97.823796829012</x>
+            <y>28.160047878440764</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
@@ -56,8 +47,8 @@
     <node id="Procesando" sizeCalculated="true" type="StateNode">
         <name>Procesando</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>408.8019318295055</x>
-            <y>48.0</y>
+            <x>262.8019318295055</x>
+            <y>28.0</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
@@ -65,7 +56,7 @@
     <edge type="Transition">
         <source>Pendiente</source>
         <target>Procesando</target>
-        <name>beginIssue()/</name>
+        <name>empezarReparacion()/</name>
         <waypoints>
             <edgeproperty
                 id="transition::Pendiente::Procesando::::WayPoint::0"
@@ -97,77 +88,21 @@
         <hidden>false</hidden>
         <Transitions>
             <Transition>
-                <trigger>beginIssue()</trigger>
+                <trigger>empezarReparacion()</trigger>
                 <guard/>
                 <post/>
-                <edgeproperty id="beginIssue()/" sizeCalculated="true"
-                    type="TransitionLabel" userDefined="true" visible="true">
-                    <name>beginIssue()/</name>
+                <edgeproperty id="empezarReparacion()/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="true" visible="true">
+                    <name>empezarReparacion()/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>42.0</userOffsetX>
-                        <userOffsetY>7.0</userOffsetY>
+                        <userOffsetX>2.0</userOffsetX>
+                        <userOffsetY>32.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
                             <related0>transition::Pendiente::Procesando::::WayPoint::0</related0>
                             <related1>transition::Pendiente::Procesando::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>Procesando</source>
-        <target>Finalizado</target>
-        <name>finishedIssue()/</name>
-        <waypoints>
-            <edgeproperty
-                id="transition::Procesando::Finalizado::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="transition::Procesando::Finalizado::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>finishedIssue()</trigger>
-                <guard/>
-                <post/>
-                <edgeproperty id="finishedIssue()/"
-                    sizeCalculated="true" type="TransitionLabel"
-                    userDefined="false" visible="true">
-                    <name>finishedIssue()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>0.0</userOffsetX>
-                        <userOffsetY>0.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::Procesando::Finalizado::::WayPoint::0</related0>
-                            <related1>transition::Procesando::Finalizado::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>
