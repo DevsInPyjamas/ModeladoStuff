@@ -3,38 +3,48 @@ reset
 !new CRA('TerraMiticaCRA')
 !insert(TerraMitica, TerraMiticaCRA) into Posee
 !new Noria('Circulo')
+!Circulo.numeroCalle := 1
 !insert(TerraMitica, Circulo) into Existen
 !new Vehiculo('Ve1')
+!Ve1.numero := 1
 !insert(Circulo, Ve1) into Compuesta
 !new Detector('DVe1')
 !insert(DVe1,Ve1) into Contiene
 !new Vehiculo('Ve2')
+!Ve2.numero := 2
 !insert(Circulo, Ve2) into Compuesta
 !new Detector('DVe2')
 !insert(DVe2,Ve2) into Contiene
 !new Vehiculo('Ve3')
+!Ve3.numero := 3
 !insert(Circulo, Ve3) into Compuesta
 !new Detector('DVe3')
 !insert(DVe3,Ve3) into Contiene
 !new Vehiculo('Ve4')
+!Ve4.numero := 4
 !insert(Circulo, Ve4) into Compuesta
 !new Detector('DVe4')
 !insert(DVe4,Ve4) into Contiene
 !new MRusa('Madera')
+!Madera.numeroCalle := 2
 !insert(TerraMitica,Madera) into Existen
 !new Vagon('Va1')
+!Va1.numero := 1
 !insert(Madera,Va1) into Compuesta
 !new Detector('DVa1')
 !insert(DVa1,Va1) into Contiene
 !new Vagon('Va2')
+!Va2.numero := 2
 !insert(Madera,Va2) into Compuesta
 !new Detector('DVa2')
 !insert(DVa2,Va2) into Contiene
 !new Vagon('Va3')
+!Va3.numero := 3
 !insert(Madera,Va3) into Compuesta
 !new Detector('DVa3')
 !insert(DVa3,Va3) into Contiene
 !new Vagon('Va4')
+!Va4.numero := 4
 !insert(Madera,Va4) into Compuesta
 !new Detector('DVa4')
 !insert(DVa4,Va4) into Contiene
