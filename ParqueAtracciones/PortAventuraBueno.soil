@@ -25,7 +25,7 @@
 !new Detector('DVe14')
 !insert(DVe14,Ve14) into Contiene
 !new MRusa('Metal')
-!Madera.numeroCalle := 2
+!Metal.numeroCalle := 2
 !insert(PortAventura,Metal) into Existen
 !new Vagon('Va11')
 !Va11.numero := 1
