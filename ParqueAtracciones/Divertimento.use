@@ -54,6 +54,7 @@ operations
         self.atraccion.componenteAveriado();
     end
     pre noUltimoVagon: self.oclIsTypeOf(Vagon) implies self.oclAsType(Vagon).posterior -> notEmpty()
+
     averiaNoAtendida(averia: Averia)
     begin
         while (not averia.atendida) do
@@ -62,6 +63,7 @@ operations
     end
     pre existeAveria: self.averia->notEmpty()
     pre mismaAveria: self.averia = averia
+
     arreglarTransporte(av: Averia)
     begin
         self.atraccion.arreglarComponente(av); -- Esta así porque quiero probar estados
@@ -69,7 +71,7 @@ operations
     pre existeAveria: self.averia->notEmpty
     pre averiaAtendida: self.averia.atendida
     pre mismaAveria: self.averia = av
-    post AveriaEliminada: self.averia->isEmpty and Averia.allInstances->excludes(av)
+    post AveriaEliminada: self.averia->isEmpty() and Averia.allInstances->excludes(av)
 
 
 statemachines
@@ -103,6 +105,7 @@ operations
     post noMoreAverias:
         self.transportes->select(t | t.averia->notEmpty())->size() =
         self.transportes->select(t | t.averia@pre->notEmpty())->size() - 1
+
     componenteAveriado() -- When a component is broken and notifies this class
     begin
     end
@@ -176,7 +179,6 @@ operations
                         and av.transporte.atraccion.numeroCalle = calle)
                         ->asSequence()->first() in
                         not self.opDisponible and self.operario.averiaAtendida = av
-
 
     incidenciaResuelta(av: Averia)
     begin
@@ -280,8 +282,6 @@ inv siMRusaEntoncesVagones:
 context Vagon inv noAncladoASiMismo:
     posterior <> anterior or
     (self.anterior->size() = 0 and self.posterior->size() = 0)
-    -- Si no se añade el size de anterior y posterior, al ser Undefined
-    -- anterior y posterior, peta porque son "iguales"
 
 context Transporte
 inv  numeroProyecto:
