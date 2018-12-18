@@ -1,1 +1,60 @@
-
+!new Parque('PortAventura')
+!new CRA('PortAventuraCRA')
+!insert(PortAventura, PortAventuraCRA) into Posee
+!new Noria('Ojo')
+!Ojo.numeroCalle := 1
+!insert(PortAventura, Ojo) into Existen
+!new Vehiculo('Ve11')
+!Ve11.numero := 1
+!insert(Ojo, Ve11) into Compuesta
+!new Detector('DVe11')
+!insert(DVe11,Ve11) into Contiene
+!new Vehiculo('Ve12')
+!Ve12.numero := 2
+!insert(Ojo, Ve12) into Compuesta
+!new Detector('DVe12')
+!insert(DVe12,Ve12) into Contiene
+!new Vehiculo('Ve13')
+!Ve13.numero := 3
+!insert(Ojo, Ve13) into Compuesta
+!new Detector('DVe13')
+!insert(DVe13,Ve13) into Contiene
+!new Vehiculo('Ve14')
+!Ve14.numero := 4
+!insert(Ojo, Ve14) into Compuesta
+!new Detector('DVe14')
+!insert(DVe14,Ve14) into Contiene
+!new MRusa('Metal')
+!Madera.numeroCalle := 2
+!insert(PortAventura,Metal) into Existen
+!new Vagon('Va11')
+!Va11.numero := 1
+!insert(Metal,Va11) into Compuesta
+!new Detector('DVa11')
+!insert(DVa11,Va11) into Contiene
+!new Vagon('Va12')
+!Va12.numero := 2
+!insert(Metal,Va12) into Compuesta
+!new Detector('DVa12')
+!insert(DVa12,Va12) into Contiene
+!new Vagon('Va13')
+!Va13.numero := 3
+!insert(Metal,Va13) into Compuesta
+!new Detector('DVa13')
+!insert(DVa13,Va13) into Contiene
+!new Vagon('Va14')
+!Va14.numero := 4
+!insert(Metal,Va14) into Compuesta
+!new Detector('DVa14')
+!insert(DVa14,Va14) into Contiene
+!insert(Va11,Va12) into Anclado
+!insert(Va12,Va13) into Anclado
+!insert(Va13,Va14) into Anclado
+!new Operario('Ana')
+!insert(PortAventuraCRA,Ana) into Trabajan
+!new Operario('Marta')
+!insert(PortAventuraCRA,Marta) into Trabajan
+!new Dispositivo('D11')
+!insert(Ana,D11) into Poseedor
+!new Dispositivo('D12')
+!insert(Marta,D12) into Poseedor

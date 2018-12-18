@@ -1,4 +1,3 @@
-reset
 !new Parque('TerraMitica')
 !new CRA('TerraMiticaCRA')
 !insert(TerraMitica, TerraMiticaCRA) into Posee
