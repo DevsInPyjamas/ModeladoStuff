@@ -139,7 +139,7 @@ operations
         -- Operario realiza reparación
     end
     pre existeAveriaAReparar: self.averiaAtendida->notEmpty()
-    trabajadorLibre()
+    trabajar()
     begin
         self.dispositivo.incidenciaResuelta(self.averiaAtendida);
     end
@@ -155,7 +155,7 @@ statemachines
         transitions
             s -> Libre
             Libre -> Ocupado { trabajadorOcupado() }
-            Ocupado -> Libre { trabajadorLibre() }
+            Ocupado -> Libre { trabajar() }
     end
 end
 
@@ -263,26 +263,28 @@ constraints
 context Averia
 inv MismaCRAOperarios:
     self.operario.cra = self.cra
-
 inv MismaCRATransporte:
     self.transporte.atraccion.parque.cra = self.cra
 
 context Atraccion
--- por algun motivo estas dos restricciones al estar juntas dan true
--- casi siempre (a pesar de tener un and entre ellas)
--- separadas en 2 funcionan
 inv numeroCalleDefinido:
 	not self.numeroCalle.oclIsUndefined()
-
 inv siNoriaEntoncesVehiculos:
     self.oclIsTypeOf(Noria) implies transportes.forAll(t | t.oclIsTypeOf(Vehiculo))
 inv siMRusaEntoncesVagones:
     self.oclIsTypeOf(MRusa) implies transportes.forAll(t | t.oclIsTypeOf(Vagon))
+inv noCiclosEnVagones:
+    self.oclIsTypeOf(MRusa) implies
+    (self.transportes->one(t | t.oclAsType(Vagon).anterior->isEmpty()) and
+    self.transportes->one(t | t.oclAsType(Vagon).posterior->isEmpty()))
 
-context Vagon inv noAncladoASiMismo:
+context Vagon
+inv noAncladoASiMismo:
     posterior <> anterior or
     (self.anterior->size() = 0 and self.posterior->size() = 0)
 
+
+
 context Transporte
-inv  numeroProyecto:
+inv  numeroDefinido:
 	not self.numero.oclIsUndefined()
