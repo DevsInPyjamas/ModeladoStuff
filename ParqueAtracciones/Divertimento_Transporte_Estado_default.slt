@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="windows-1252"?>
 <diagram_Layout version="13">
     <diagramOptions>
         <autolayout>false</autolayout>
@@ -10,20 +10,11 @@
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
-    <node id="Averiado" sizeCalculated="true" type="StateNode">
-        <name>Averiado</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>244.31156279246943</x>
-            <y>190.48432425398465</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
     <node id="Funcionando" sizeCalculated="true" type="StateNode">
         <name>Funcionando</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>280.3307500226472</x>
-            <y>14.0</y>
+            <x>211.33075002264718</x>
+            <y>62.0</y>
         </strategy>
         <showInvariant>true</showInvariant>
         <hidden>false</hidden>
@@ -51,6 +42,15 @@
             </strategy>
             <hidden>false</hidden>
         </node>
+        <hidden>false</hidden>
+    </node>
+    <node id="Averiado" sizeCalculated="true" type="StateNode">
+        <name>Averiado</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>430.31156279246943</x>
+            <y>62.48432425398465</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
         <hidden>false</hidden>
     </node>
     <edge type="Transition">
@@ -110,7 +110,7 @@
     <edge type="Transition">
         <source>Averiado</source>
         <target>Funcionando</target>
-        <name>fixedTransport()/</name>
+        <name>arreglarTransporte(av : Averia)/</name>
         <waypoints>
             <edgeproperty
                 id="transition::Averiado::Funcionando::::WayPoint::0"
@@ -142,16 +142,16 @@
         <hidden>false</hidden>
         <Transitions>
             <Transition>
-                <trigger>fixedTransport()</trigger>
+                <trigger>arreglarTransporte(av : Averia)</trigger>
                 <guard/>
                 <post/>
-                <edgeproperty id="fixedTransport()/"
+                <edgeproperty id="arreglarTransporte(av : Averia)/"
                     sizeCalculated="true" type="TransitionLabel"
                     userDefined="true" visible="true">
-                    <name>fixedTransport()/</name>
+                    <name>arreglarTransporte(av : Averia)/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>104.0</userOffsetX>
-                        <userOffsetY>9.0</userOffsetY>
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>-35.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
@@ -167,7 +167,7 @@
     <edge type="Transition">
         <source>Funcionando</source>
         <target>Averiado</target>
-        <name>brokenTransport()/</name>
+        <name>romperTransporte()/</name>
         <waypoints>
             <edgeproperty
                 id="transition::Funcionando::Averiado::::WayPoint::0"
@@ -199,16 +199,16 @@
         <hidden>false</hidden>
         <Transitions>
             <Transition>
-                <trigger>brokenTransport()</trigger>
+                <trigger>romperTransporte()</trigger>
                 <guard/>
                 <post/>
-                <edgeproperty id="brokenTransport()/"
+                <edgeproperty id="romperTransporte()/"
                     sizeCalculated="true" type="TransitionLabel"
                     userDefined="true" visible="true">
-                    <name>brokenTransport()/</name>
+                    <name>romperTransporte()/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>-67.0</userOffsetX>
-                        <userOffsetY>-4.0</userOffsetY>
+                        <userOffsetX>0.0</userOffsetX>
+                        <userOffsetY>14.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
