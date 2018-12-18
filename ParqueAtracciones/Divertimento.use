@@ -168,7 +168,9 @@ operations
     begin
         declare av: Averia;
         av := Averia.allInstances->select(av | av.transporte.numero = transNumero
-            and av.transporte.atraccion.numeroCalle = calle)->asSequence()->first();
+            and av.transporte.atraccion.numeroCalle = calle and
+            self.operario.cra.parque.atracciones->includes(av.transporte.atraccion))
+            ->asSequence()->first();
         insert (self.operario, av) into Atiende;
         self.operario.trabajadorOcupado();
     end
@@ -176,7 +178,8 @@ operations
                         ->exists(t | t.numero = transNumero and t.atraccion.numeroCalle = calle)
     post trabajadorOcupado: let av: Averia = Averia.allInstances->
                         select(av | av.transporte.numero = transNumero
-                        and av.transporte.atraccion.numeroCalle = calle)
+                        and av.transporte.atraccion.numeroCalle = calle and
+                        self.operario.cra.parque.atracciones->includes(av.transporte.atraccion))
                         ->asSequence()->first() in
                         not self.opDisponible and self.operario.averiaAtendida = av
 

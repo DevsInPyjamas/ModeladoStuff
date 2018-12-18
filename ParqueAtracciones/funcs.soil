@@ -1,1 +1,21 @@
+step on
+-- Averías
+!Va1.romperTransporte()
+!Va12.romperTransporte()
 
+!Ve3.romperTransporte()
+!Ve13.romperTransporte()
+
+-- Arreglan 3 y se queda una por arreglar
+!Felipe.trabajar()
+!Emilio.trabajar()
+!Ana.trabajar()
+
+-- Dos averias mas
+!Va3.romperTransporte()
+!Ve14.romperTransporte()
+
+-- Se arreglan todas las averias
+!Marta.trabajar()
+!Ana.trabajar()
+!Felipe.trabajar()
