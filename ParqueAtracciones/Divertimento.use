@@ -30,13 +30,13 @@ operations
     end
     pre transportePerteneceAtraccion: atr.transportes->includes(trans)
     pre mismoParque: atr.parque = self.parque
-    post nuevaAveria: Averia.allInstances->size() = Averia.allInstances@pre->size() + 1
+    post nuevaAveria: Averia.allInstances->size() = Averia.allInstances->size@pre() + 1
 
     averiaArreglada(av: Averia)
     begin
         declare transporte: Transporte;
         transporte := av.transporte;
-        destroy(av)
+        transporte.arreglarTransporte(av);
     end
     pre averiaPerteneceACRA: self.averia->includes(av)
     pre averiaAsignadaAOperario: av.operario->notEmpty() and self.operarios->includes(av.operario)
@@ -62,13 +62,15 @@ operations
     end
     pre existeAveria: self.averia->notEmpty()
     pre mismaAveria: self.averia = averia
-    arreglarTransporte()
+    arreglarTransporte(av: Averia)
     begin
+        destroy(av);
         self.atraccion.arreglarComponente(); -- Esta así porque quiero probar estados
     end
     pre existeAveria: self.averia->notEmpty
     pre averiaAtendida: self.averia.atendida
-    post AveriaEliminada: self.averia->isEmpty
+    pre mismaAveria: self.averia = av
+    post AveriaEliminada: self.averia->isEmpty and Averia.allInstances->excludes(av)
 
 
 statemachines
@@ -97,9 +99,11 @@ operations
     arreglarComponente() -- When a component is fixed and notifies this class
     begin
     end
+    post unaAveriaMenos: self.transportes.cra->size() = self.transportes.cra@pre->size() - 1
     componenteAveriado() -- When a component is broken and notifies this class
     begin
     end
+    post unaAveriaMas: self.transportes.cra->size() = self.transportes.cra@pre->size() + 1
 statemachines
     psm Estado
         states
@@ -127,13 +131,16 @@ operations
     begin
         self.averiaAtendida.empezarReparacion();
         -- Operario realiza reparación
-        self.dispositivo.incidenciaResuelta(self.averiaAtendida);
+        self.trabajadorLibre();
     end
     pre existeAveriaAReparar: self.averiaAtendida->notEmpty()
     trabajadorLibre()
     begin
+        self.dispositivo.incidenciaResuelta(self.averiaAtendida);
     end
     pre ocupado: not self.dispositivo.opDisponible
+    post operarioLibre: self.dispositivo.opDisponible
+
 statemachines
     psm Estado
         states
@@ -157,7 +164,12 @@ operations
         self.operario.trabajadorOcupado();
     end
     pre averiaEnCalleYTransporte: Averia.allInstances->collect(transporte)->asSet()
-                        ->exists(t | t = transNumero and t.atraccion.numeroCalle = calle)
+                        ->exists(t | t.numero = transNumero and t.atraccion.numeroCalle = calle)
+    post trabajadorOcupado: let av: Averia = Averia.allInstances->
+                        select(av | av.transporte.numero = transNumero
+                        and av.transporte.atraccion.numeroCalle = calle)
+                        ->asSequence()->first() in
+                        not self.opDisponible and self.operario.averiaAtendida = av
 
 
     incidenciaResuelta(av: Averia)
@@ -166,11 +178,10 @@ operations
         cra := self.operario.cra;
         cra.averiaArreglada(av);
         self.averiasAtendidas := self.averiasAtendidas + 1;
-        self.operario.trabajadorLibre();
     end
     pre trabajadorOcupado: not self.opDisponible
     pre trabajadorAtiendeAveria: self.operario.averiaAtendida = av
-    post averiaIncrementada: self.averiasAtendidas = self.averiasAtendidas@pre + 1
+    post averiasResueltasIncrementada: self.averiasAtendidas = self.averiasAtendidas@pre + 1
     post trabajadorLibre: self.opDisponible
 end
 
