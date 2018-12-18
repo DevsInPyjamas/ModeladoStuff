@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="windows-1252"?>
 <diagram_Layout version="13">
     <diagramOptions>
         <autolayout>false</autolayout>
@@ -10,15 +10,6 @@
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
-    <node id="Ocupado" sizeCalculated="true" type="StateNode">
-        <name>Ocupado</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>210.0980838525918</x>
-            <y>70.05712389877519</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
     <node id="Libre" sizeCalculated="true" type="StateNode">
         <name>Libre</name>
         <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
@@ -53,64 +44,19 @@
         </node>
         <hidden>false</hidden>
     </node>
-    <edge type="Transition">
-        <source>Libre</source>
-        <target>Ocupado</target>
-        <name>workerBusy()/</name>
-        <waypoints>
-            <edgeproperty id="transition::Libre::Ocupado::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty id="transition::Libre::Ocupado::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
+    <node id="Ocupado" sizeCalculated="true" type="StateNode">
+        <name>Ocupado</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>210.0980838525918</x>
+            <y>70.05712389877519</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
         <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>workerBusy()</trigger>
-                <guard/>
-                <post/>
-                <edgeproperty id="workerBusy()/" sizeCalculated="true"
-                    type="TransitionLabel" userDefined="true" visible="true">
-                    <name>workerBusy()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>71.0</userOffsetX>
-                        <userOffsetY>4.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::Libre::Ocupado::::WayPoint::0</related0>
-                            <related1>transition::Libre::Ocupado::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
+    </node>
     <edge type="Transition">
         <source>Ocupado</source>
         <target>Libre</target>
-        <name>workerReleased()/</name>
+        <name>trabajadorLibre()/</name>
         <waypoints>
             <edgeproperty id="transition::Ocupado::Libre::::WayPoint::0"
                 sizeCalculated="true" type="WayPoint"
@@ -140,13 +86,13 @@
         <hidden>false</hidden>
         <Transitions>
             <Transition>
-                <trigger>workerReleased()</trigger>
+                <trigger>trabajadorLibre()</trigger>
                 <guard/>
                 <post/>
-                <edgeproperty id="workerReleased()/"
+                <edgeproperty id="trabajadorLibre()/"
                     sizeCalculated="true" type="TransitionLabel"
                     userDefined="true" visible="true">
-                    <name>workerReleased()/</name>
+                    <name>trabajadorLibre()/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
                         <userOffsetX>-38.0</userOffsetX>
                         <userOffsetY>-40.0</userOffsetY>
@@ -209,6 +155,61 @@
                         <related length="2">
                             <related0>transition::s::Libre::::WayPoint::0</related0>
                             <related1>transition::s::Libre::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Libre</source>
+        <target>Ocupado</target>
+        <name>trabajadorOcupado()/</name>
+        <waypoints>
+            <edgeproperty id="transition::Libre::Ocupado::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty id="transition::Libre::Ocupado::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>trabajadorOcupado()</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="trabajadorOcupado()/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="true" visible="true">
+                    <name>trabajadorOcupado()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>71.0</userOffsetX>
+                        <userOffsetY>4.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Libre::Ocupado::::WayPoint::0</related0>
+                            <related1>transition::Libre::Ocupado::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>

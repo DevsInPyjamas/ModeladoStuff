@@ -12,7 +12,6 @@ operations
             a := new Averia between (trans, self);
             if self.operarios->select(op | op.dispositivo.opDisponible)->notEmpty() then
                 op := self.operarios->any(op | op.dispositivo.opDisponible);
-                insert(op, a) into Atiende;
                 op.dispositivo.enviarIncidencia(atr.numeroCalle, trans.numero);
             else
                 trans.averiaNoAtendida(a);
@@ -21,16 +20,14 @@ operations
             a := trans.averia;
             if self.operarios->select(op | op.dispositivo.opDisponible)->notEmpty() then
                 op := self.operarios->any(op | op.dispositivo.opDisponible);
-                insert(op, a) into Atiende;
                 op.dispositivo.enviarIncidencia(atr.numeroCalle, trans.numero);
-            else
-                trans.averiaNoAtendida(a);
             end
         end
     end
     pre transportePerteneceAtraccion: atr.transportes->includes(trans)
     pre mismoParque: atr.parque = self.parque
-    post nuevaAveria: Averia.allInstances->size() = Averia.allInstances->size@pre() + 1
+    post nuevaAveria: Averia.allInstances->select(av | av.oclIsNew())->notEmpty() implies
+     Averia.allInstances->size() = Averia.allInstances@pre->size() + 1
 
     averiaArreglada(av: Averia)
     begin
@@ -45,7 +42,7 @@ end
 
 abstract class Transporte
 attributes
-    numero: Integer 
+    numero: Integer
 operations
     -- Notification operations
     -- Si en un momento determinado se detectara pérdida de anclaje,
@@ -53,19 +50,21 @@ operations
     -- (CRA) y también a la atracción de la que forma parte dicho vehículo
     romperTransporte()
     begin
+        self.atraccion.parque.cra.averiaDetectada(self, self.atraccion);
         self.atraccion.componenteAveriado();
-        self.atraccion.parque.cra.averiaDetectada(self, self.atraccion)
     end
     pre noUltimoVagon: self.oclIsTypeOf(Vagon) implies self.oclAsType(Vagon).posterior -> notEmpty()
     averiaNoAtendida(averia: Averia)
     begin
+        while (not averia.atendida) do
+            self.atraccion.parque.cra.averiaDetectada(self, self.atraccion);
+        end
     end
     pre existeAveria: self.averia->notEmpty()
     pre mismaAveria: self.averia = averia
     arreglarTransporte(av: Averia)
     begin
-        destroy(av);
-        self.atraccion.arreglarComponente(); -- Esta así porque quiero probar estados
+        self.atraccion.arreglarComponente(av); -- Esta así porque quiero probar estados
     end
     pre existeAveria: self.averia->notEmpty
     pre averiaAtendida: self.averia.atendida
@@ -94,16 +93,20 @@ end
 
 abstract class Atraccion
 attributes
-    numeroCalle: Integer 
+    numeroCalle: Integer
 operations
-    arreglarComponente() -- When a component is fixed and notifies this class
+    arreglarComponente(av: Averia) -- When a component is fixed and notifies this class
     begin
+        destroy(av);
     end
-    post unaAveriaMenos: self.transportes.cra->size() = self.transportes.cra@pre->size() - 1
+    pre averiaEnAtrasion: self.transportes->collect(averia)->includes(av)
+    post noMoreAverias:
+        self.transportes->select(t | t.averia->notEmpty())->size() =
+        self.transportes->select(t | t.averia@pre->notEmpty())->size() - 1
     componenteAveriado() -- When a component is broken and notifies this class
     begin
     end
-    post unaAveriaMas: self.transportes.cra->size() = self.transportes.cra@pre->size() + 1
+    pre hayTransporteConAveria: self.transportes->exists(t | t.averia->notEmpty())
 statemachines
     psm Estado
         states
@@ -113,9 +116,9 @@ statemachines
         transitions
             s -> Funcionando
             Funcionando -> Esperando { componenteAveriado() }
-            Esperando -> Funcionando { [self.transportes->collect(averia)->size()=1] arreglarComponente() }
+            Esperando -> Funcionando { [self.transportes->select(t | t.averia->notEmpty)->size() = 1] arreglarComponente() }
             Esperando -> Esperando { componenteAveriado() }
-            Esperando -> Esperando { [self.transportes->collect(averia)->size()>1] arreglarComponente() }
+            Esperando -> Esperando { [self.transportes->select(t | t.averia->notEmpty)->size() > 1] arreglarComponente() }
     end
 end
 
@@ -131,7 +134,6 @@ operations
     begin
         self.averiaAtendida.empezarReparacion();
         -- Operario realiza reparación
-        self.trabajadorLibre();
     end
     pre existeAveriaAReparar: self.averiaAtendida->notEmpty()
     trabajadorLibre()
@@ -156,11 +158,15 @@ end
 
 class Dispositivo
 attributes
-    averiasAtendidas: Integer init: 0 
+    averiasAtendidas: Integer init: 0
     opDisponible : Boolean derive = operario.averiaAtendida->isEmpty()
 operations
     enviarIncidencia(calle: Integer, transNumero: Integer)
     begin
+        declare av: Averia;
+        av := Averia.allInstances->select(av | av.transporte.numero = transNumero
+            and av.transporte.atraccion.numeroCalle = calle)->asSequence()->first();
+        insert (self.operario, av) into Atiende;
         self.operario.trabajadorOcupado();
     end
     pre averiaEnCalleYTransporte: Averia.allInstances->collect(transporte)->asSet()

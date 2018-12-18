@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="windows-1252"?>
 <diagram_Layout version="13">
     <diagramOptions>
         <autolayout>false</autolayout>
@@ -10,24 +10,6 @@
         <showrolenames>true</showrolenames>
         <showgrid>false</showgrid>
     </diagramOptions>
-    <node id="Esperando" sizeCalculated="true" type="StateNode">
-        <name>Esperando</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>72.0778965093302</x>
-            <y>99.84126899082449</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
-    <node id="Funcionando" sizeCalculated="true" type="StateNode">
-        <name>Funcionando</name>
-        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
-            <x>227.18750102559255</x>
-            <y>218.0</y>
-        </strategy>
-        <showInvariant>true</showInvariant>
-        <hidden>false</hidden>
-    </node>
     <node height="14.0" id="s" sizeCalculated="false"
         type="PseudoStateNode" width="14.0">
         <name>s</name>
@@ -51,6 +33,24 @@
             </strategy>
             <hidden>false</hidden>
         </node>
+        <hidden>false</hidden>
+    </node>
+    <node id="Esperando" sizeCalculated="true" type="StateNode">
+        <name>Esperando</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>240.07789650933023</x>
+            <y>287.84126899082446</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
+        <hidden>false</hidden>
+    </node>
+    <node id="Funcionando" sizeCalculated="true" type="StateNode">
+        <name>Funcionando</name>
+        <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyFixed">
+            <x>211.1875010255926</x>
+            <y>31.0</y>
+        </strategy>
+        <showInvariant>true</showInvariant>
         <hidden>false</hidden>
     </node>
     <edge type="Transition">
@@ -100,6 +100,280 @@
                         <related length="2">
                             <related0>transition::s::Funcionando::::WayPoint::0</related0>
                             <related1>transition::s::Funcionando::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Esperando</source>
+        <target>Funcionando</target>
+        <name>[self.transportes-&gt;collect($elem1 : Transporte | $elem1.averia)-&gt;isEmpty] arreglarComponente()/</name>
+        <waypoints>
+            <edgeproperty
+                id="transition::Esperando::Funcionando::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>41.065455573676616</userOffsetX>
+                    <userOffsetY>-4.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>Esperando</relativeNodeId>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Esperando::Funcionando::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>80.20464807007295</userOffsetX>
+                    <userOffsetY>50.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>Funcionando</relativeNodeId>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>arreglarComponente()</trigger>
+                <guard>self.transportes-&gt;collect($elem1 : Transporte | $elem1.averia)-&gt;isEmpty</guard>
+                <post/>
+                <edgeproperty
+                    id="[self.transportes->collect($elem1 : Transporte | $elem1.averia)->isEmpty] arreglarComponente()/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="true" visible="true">
+                    <name>[self.transportes-&gt;collect($elem1 : Transporte | $elem1.averia)-&gt;isEmpty] arreglarComponente()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>243.0</userOffsetX>
+                        <userOffsetY>-4.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Esperando::Funcionando::::WayPoint::0</related0>
+                            <related1>transition::Esperando::Funcionando::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Funcionando</source>
+        <target>Esperando</target>
+        <name>componenteAveriado()/</name>
+        <waypoints>
+            <edgeproperty
+                id="transition::Funcionando::Esperando::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Funcionando::Esperando::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint" userDefined="true" visible="true">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>12.691823029247871</userOffsetX>
+                    <userOffsetY>-4.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>1.7976931348623157E308</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>1.7976931348623157E308</maxDeltaY>
+                    <corner>NORTH_WEST</corner>
+                    <relativeNodeId>Esperando</relativeNodeId>
+                </strategy>
+                <id>1</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <Transitions>
+            <Transition>
+                <trigger>componenteAveriado()</trigger>
+                <guard/>
+                <post/>
+                <edgeproperty id="componenteAveriado()/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="true" visible="true">
+                    <name>componenteAveriado()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>-66.0</userOffsetX>
+                        <userOffsetY>-35.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Funcionando::Esperando::::WayPoint::0</related0>
+                            <related1>transition::Funcionando::Esperando::::WayPoint::1</related1>
+                        </related>
+                    </strategy>
+                    <hidden>false</hidden>
+                </edgeproperty>
+            </Transition>
+        </Transitions>
+    </edge>
+    <edge type="Transition">
+        <source>Esperando</source>
+        <target>Esperando</target>
+        <name>[self.transportes-&gt;collect($elem2 : Transporte | $elem2.averia)-&gt;notEmpty] arreglarComponente()/</name>
+        <waypoints>
+            <edgeproperty
+                id="transition::Esperando::Esperando::::WayPoint::0"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>0</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>ABSOLUTE</basisDeltaX>
+                    <deltaX>0.0</deltaX>
+                    <maxDeltaX>0.0</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Esperando</relativeNodeId>
+                </strategy>
+                <id>0</id>
+                <specialid>1</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Esperando::Esperando::::WayPoint::1"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>1</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>-0.3333</deltaY>
+                    <maxDeltaY>66.66</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Esperando</relativeNodeId>
+                </strategy>
+                <id>1</id>
+                <specialid>3</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Esperando::Esperando::::WayPoint::2"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>2</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>0.6666</deltaX>
+                    <maxDeltaX>133.32</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Esperando</relativeNodeId>
+                </strategy>
+                <id>2</id>
+                <specialid>4</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Esperando::Esperando::::WayPoint::3"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="false">
+                <name>3</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>RELATIVE</basisDeltaY>
+                    <deltaY>0.6666</deltaY>
+                    <maxDeltaY>133.32</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Esperando</relativeNodeId>
+                </strategy>
+                <id>3</id>
+                <specialid>5</specialid>
+                <hidden>true</hidden>
+            </edgeproperty>
+            <edgeproperty
+                id="transition::Esperando::Esperando::::WayPoint::4"
+                sizeCalculated="true" type="WayPoint"
+                userDefined="false" visible="true">
+                <name>4</name>
+                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
+                    <userOffsetX>0.0</userOffsetX>
+                    <userOffsetY>0.0</userOffsetY>
+                    <basisDeltaX>RELATIVE</basisDeltaX>
+                    <deltaX>-0.3333</deltaX>
+                    <maxDeltaX>66.66</maxDeltaX>
+                    <basisDeltaY>ABSOLUTE</basisDeltaY>
+                    <deltaY>0.0</deltaY>
+                    <maxDeltaY>0.0</maxDeltaY>
+                    <corner>NORTH_EAST</corner>
+                    <relativeNodeId>Esperando</relativeNodeId>
+                </strategy>
+                <id>4</id>
+                <specialid>2</specialid>
+                <hidden>false</hidden>
+            </edgeproperty>
+        </waypoints>
+        <hidden>false</hidden>
+        <reflexivePosition>NORTH_EAST</reflexivePosition>
+        <Transitions>
+            <Transition>
+                <trigger>arreglarComponente()</trigger>
+                <guard>self.transportes-&gt;collect($elem2 : Transporte | $elem2.averia)-&gt;notEmpty</guard>
+                <post/>
+                <edgeproperty
+                    id="[self.transportes->collect($elem2 : Transporte | $elem2.averia)->notEmpty] arreglarComponente()/"
+                    sizeCalculated="true" type="TransitionLabel"
+                    userDefined="true" visible="true">
+                    <name>[self.transportes-&gt;collect($elem2 : Transporte | $elem2.averia)-&gt;notEmpty] arreglarComponente()/</name>
+                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
+                        <userOffsetX>328.0</userOffsetX>
+                        <userOffsetY>-26.0</userOffsetY>
+                        <offsetX>0.0</offsetX>
+                        <offsetY>10.0</offsetY>
+                        <related length="2">
+                            <related0>transition::Esperando::Esperando::::WayPoint::0</related0>
+                            <related1>transition::Esperando::Esperando::::WayPoint::4</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>
@@ -227,269 +501,16 @@
                 <post/>
                 <edgeproperty id="componenteAveriado()/"
                     sizeCalculated="true" type="TransitionLabel"
-                    userDefined="false" visible="true">
+                    userDefined="true" visible="true">
                     <name>componenteAveriado()/</name>
                     <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>0.0</userOffsetX>
-                        <userOffsetY>0.0</userOffsetY>
+                        <userOffsetX>43.0</userOffsetX>
+                        <userOffsetY>43.0</userOffsetY>
                         <offsetX>0.0</offsetX>
                         <offsetY>10.0</offsetY>
                         <related length="2">
                             <related0>transition::Esperando::Esperando::::WayPoint::0</related0>
                             <related1>transition::Esperando::Esperando::::WayPoint::4</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>Funcionando</source>
-        <target>Esperando</target>
-        <name>componenteAveriado()/</name>
-        <waypoints>
-            <edgeproperty
-                id="transition::Funcionando::Esperando::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="transition::Funcionando::Esperando::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>componenteAveriado()</trigger>
-                <guard/>
-                <post/>
-                <edgeproperty id="componenteAveriado()/"
-                    sizeCalculated="true" type="TransitionLabel"
-                    userDefined="false" visible="true">
-                    <name>componenteAveriado()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>0.0</userOffsetX>
-                        <userOffsetY>0.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::Funcionando::Esperando::::WayPoint::0</related0>
-                            <related1>transition::Funcionando::Esperando::::WayPoint::1</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>Esperando</source>
-        <target>Esperando</target>
-        <name>[(self.transportes-&gt;collect($elem2 : Transporte | $elem2.averia)-&gt;size &gt; 1)] arreglarComponente()/</name>
-        <waypoints>
-            <edgeproperty
-                id="transition::Esperando::Esperando::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <basisDeltaX>ABSOLUTE</basisDeltaX>
-                    <deltaX>0.0</deltaX>
-                    <maxDeltaX>0.0</maxDeltaX>
-                    <basisDeltaY>RELATIVE</basisDeltaY>
-                    <deltaY>-0.3333</deltaY>
-                    <maxDeltaY>66.66</maxDeltaY>
-                    <corner>NORTH_EAST</corner>
-                    <relativeNodeId>Esperando</relativeNodeId>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="transition::Esperando::Esperando::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="false">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <basisDeltaX>RELATIVE</basisDeltaX>
-                    <deltaX>0.6666</deltaX>
-                    <maxDeltaX>133.32</maxDeltaX>
-                    <basisDeltaY>RELATIVE</basisDeltaY>
-                    <deltaY>-0.3333</deltaY>
-                    <maxDeltaY>66.66</maxDeltaY>
-                    <corner>NORTH_EAST</corner>
-                    <relativeNodeId>Esperando</relativeNodeId>
-                </strategy>
-                <id>1</id>
-                <specialid>3</specialid>
-                <hidden>true</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="transition::Esperando::Esperando::::WayPoint::2"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="false">
-                <name>2</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <basisDeltaX>RELATIVE</basisDeltaX>
-                    <deltaX>0.6666</deltaX>
-                    <maxDeltaX>133.32</maxDeltaX>
-                    <basisDeltaY>RELATIVE</basisDeltaY>
-                    <deltaY>0.6666</deltaY>
-                    <maxDeltaY>133.32</maxDeltaY>
-                    <corner>NORTH_EAST</corner>
-                    <relativeNodeId>Esperando</relativeNodeId>
-                </strategy>
-                <id>2</id>
-                <specialid>4</specialid>
-                <hidden>true</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="transition::Esperando::Esperando::::WayPoint::3"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="false">
-                <name>3</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <basisDeltaX>RELATIVE</basisDeltaX>
-                    <deltaX>-0.3333</deltaX>
-                    <maxDeltaX>66.66</maxDeltaX>
-                    <basisDeltaY>RELATIVE</basisDeltaY>
-                    <deltaY>0.6666</deltaY>
-                    <maxDeltaY>133.32</maxDeltaY>
-                    <corner>NORTH_EAST</corner>
-                    <relativeNodeId>Esperando</relativeNodeId>
-                </strategy>
-                <id>3</id>
-                <specialid>5</specialid>
-                <hidden>true</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="transition::Esperando::Esperando::::WayPoint::4"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>4</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyRelativeToCorner">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                    <basisDeltaX>RELATIVE</basisDeltaX>
-                    <deltaX>-0.3333</deltaX>
-                    <maxDeltaX>66.66</maxDeltaX>
-                    <basisDeltaY>ABSOLUTE</basisDeltaY>
-                    <deltaY>0.0</deltaY>
-                    <maxDeltaY>0.0</maxDeltaY>
-                    <corner>NORTH_EAST</corner>
-                    <relativeNodeId>Esperando</relativeNodeId>
-                </strategy>
-                <id>4</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <reflexivePosition>NORTH_EAST</reflexivePosition>
-        <Transitions>
-            <Transition>
-                <trigger>arreglarComponente()</trigger>
-                <guard>(self.transportes-&gt;collect($elem2 : Transporte | $elem2.averia)-&gt;size &gt; 1)</guard>
-                <post/>
-                <edgeproperty
-                    id="[(self.transportes->collect($elem2 : Transporte | $elem2.averia)->size > 1)] arreglarComponente()/"
-                    sizeCalculated="true" type="TransitionLabel"
-                    userDefined="false" visible="true">
-                    <name>[(self.transportes-&gt;collect($elem2 : Transporte | $elem2.averia)-&gt;size &gt; 1)] arreglarComponente()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>0.0</userOffsetX>
-                        <userOffsetY>0.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::Esperando::Esperando::::WayPoint::0</related0>
-                            <related1>transition::Esperando::Esperando::::WayPoint::4</related1>
-                        </related>
-                    </strategy>
-                    <hidden>false</hidden>
-                </edgeproperty>
-            </Transition>
-        </Transitions>
-    </edge>
-    <edge type="Transition">
-        <source>Esperando</source>
-        <target>Funcionando</target>
-        <name>[(self.transportes-&gt;collect($elem1 : Transporte | $elem1.averia)-&gt;size = 1)] arreglarComponente()/</name>
-        <waypoints>
-            <edgeproperty
-                id="transition::Esperando::Funcionando::::WayPoint::0"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>0</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>0</id>
-                <specialid>1</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-            <edgeproperty
-                id="transition::Esperando::Funcionando::::WayPoint::1"
-                sizeCalculated="true" type="WayPoint"
-                userDefined="false" visible="true">
-                <name>1</name>
-                <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyAttachedIntersection">
-                    <userOffsetX>0.0</userOffsetX>
-                    <userOffsetY>0.0</userOffsetY>
-                </strategy>
-                <id>1</id>
-                <specialid>2</specialid>
-                <hidden>false</hidden>
-            </edgeproperty>
-        </waypoints>
-        <hidden>false</hidden>
-        <Transitions>
-            <Transition>
-                <trigger>arreglarComponente()</trigger>
-                <guard>(self.transportes-&gt;collect($elem1 : Transporte | $elem1.averia)-&gt;size = 1)</guard>
-                <post/>
-                <edgeproperty
-                    id="[(self.transportes->collect($elem1 : Transporte | $elem1.averia)->size = 1)] arreglarComponente()/"
-                    sizeCalculated="true" type="TransitionLabel"
-                    userDefined="false" visible="true">
-                    <name>[(self.transportes-&gt;collect($elem1 : Transporte | $elem1.averia)-&gt;size = 1)] arreglarComponente()/</name>
-                    <strategy type="org.tzi.use.gui.views.diagrams.elements.positioning.StrategyInBetween">
-                        <userOffsetX>0.0</userOffsetX>
-                        <userOffsetY>0.0</userOffsetY>
-                        <offsetX>0.0</offsetX>
-                        <offsetY>10.0</offsetY>
-                        <related length="2">
-                            <related0>transition::Esperando::Funcionando::::WayPoint::0</related0>
-                            <related1>transition::Esperando::Funcionando::::WayPoint::1</related1>
                         </related>
                     </strategy>
                     <hidden>false</hidden>
