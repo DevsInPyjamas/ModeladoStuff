@@ -273,10 +273,17 @@ inv siNoriaEntoncesVehiculos:
     self.oclIsTypeOf(Noria) implies transportes.forAll(t | t.oclIsTypeOf(Vehiculo))
 inv siMRusaEntoncesVagones:
     self.oclIsTypeOf(MRusa) implies transportes.forAll(t | t.oclIsTypeOf(Vagon))
+inv noCiclosEnVagones:
+    self.oclIsTypeOf(MRusa) implies
+    (self.transportes->one(t | t.oclAsType(Vagon).anterior->isEmpty()) and
+    self.transportes->one(t | t.oclAsType(Vagon).posterior->isEmpty()))
 
-context Vagon inv noAncladoASiMismo:
+context Vagon
+inv noAncladoASiMismo:
     posterior <> anterior or
     (self.anterior->size() = 0 and self.posterior->size() = 0)
+
+
 
 context Transporte
 inv  numeroDefinido:
