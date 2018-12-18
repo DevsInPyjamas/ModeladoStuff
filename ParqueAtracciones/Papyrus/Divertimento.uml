@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http://www.omg.org/spec/UML/20131001/MagicDrawProfile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/UML/20131001/MagicDrawProfile UML_Standard_Profile.MagicDraw_Profile.profile.uml#_g9iE_gLXEemVFYrwyJh7zw">
+  <uml:Model xmi:id="eee_1045467100313_135436_1" name="Data" URI="" viewpoint="">
+    <ownedComment xmi:type="uml:Comment" xmi:id="_18_0_6_129a036d_1545063107903_911782_3985" annotatedElement="eee_1045467100313_135436_1">
+      <body>Author:jesuspa98.
+Created:17/12/18 17:11.
+Title:.
+Comment:.
+</body>
+    </ownedComment>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_0primitiveTypesData">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_0javaPrimitiveTypesData">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Model" xmi:id="_18_0_6_129a036d_1545140287262_898094_4375" name="Divertimento" URI="" viewpoint="">
+      <packagedElement xmi:type="uml:Package" xmi:id="_18_0_6_129a036d_1545065301692_849581_5007" name="StateMachines" URI="">
+        <packagedElement xmi:type="uml:Package" xmi:id="_WI1AYALhEemf2vVNpogZfg" name="events">
+          <packagedElement xmi:type="uml:CallEvent" xmi:id="_WI2OgALhEemf2vVNpogZfg" name="CE - Atraccion - componenteAveriado" operation="_18_0_6_129a036d_1545063894121_293955_4369"/>
+          <packagedElement xmi:type="uml:CallEvent" xmi:id="_cRZhIALhEemf2vVNpogZfg" name="CE - Atraccion - arreglarComponente" operation="_18_0_6_129a036d_1545063882758_798663_4367"/>
+          <packagedElement xmi:type="uml:CallEvent" xmi:id="_S5F4gALiEemf2vVNpogZfg" name="CE - Averia - empezarReparacion" operation="_18_0_6_129a036d_1545064667858_469186_4701"/>
+          <packagedElement xmi:type="uml:CallEvent" xmi:id="_VUdHsALiEemf2vVNpogZfg" name="CE - Operario - trabajadorOcupado" operation="_18_0_6_129a036d_1545063908913_476993_4371"/>
+          <packagedElement xmi:type="uml:CallEvent" xmi:id="_WJOzkQLiEemf2vVNpogZfg" name="CE - Operario - trabajadorLibre" operation="_18_0_6_129a036d_1545063915821_796477_4373"/>
+          <packagedElement xmi:type="uml:CallEvent" xmi:id="_YvYWcALiEemf2vVNpogZfg" name="CE - Transporte - romperTransporte" operation="_18_0_6_129a036d_1545063830290_262640_4363"/>
+          <packagedElement xmi:type="uml:CallEvent" xmi:id="_aEfvQALiEemf2vVNpogZfg" name="CE - Transporte - arreglarTransporte" operation="_18_0_6_129a036d_1545063849646_121012_4365"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:StateMachine" xmi:id="_2KaN4ALeEemf2vVNpogZfg" name="StateMachineAtraccion">
+          <region xmi:type="uml:Region" xmi:id="_6E2qMALeEemf2vVNpogZfg" name="Region1">
+            <ownedComment xmi:type="uml:Comment" xmi:id="_0_3mAALhEemf2vVNpogZfg">
+              <body> [self.transportes->collect(averia)->size()=1]</body>
+            </ownedComment>
+            <ownedComment xmi:type="uml:Comment" xmi:id="_MEbt0ALiEemf2vVNpogZfg">
+              <body>[self.transportes->collect(averia->size() > 1]</body>
+            </ownedComment>
+            <transition xmi:type="uml:Transition" xmi:id="_RGXokALgEemf2vVNpogZfg" source="_8idVEALeEemf2vVNpogZfg" target="_BlrXUALfEemf2vVNpogZfg"/>
+            <transition xmi:type="uml:Transition" xmi:id="_V3cK4ALgEemf2vVNpogZfg" source="_BlrXUALfEemf2vVNpogZfg" target="_FvtHwALfEemf2vVNpogZfg">
+              <trigger xmi:type="uml:Trigger" xmi:id="_WIzLMALhEemf2vVNpogZfg" name="" event="_WI2OgALhEemf2vVNpogZfg"/>
+            </transition>
+            <transition xmi:type="uml:Transition" xmi:id="_YFhMAALgEemf2vVNpogZfg" source="_FvtHwALfEemf2vVNpogZfg" target="_FvtHwALfEemf2vVNpogZfg">
+              <trigger xmi:type="uml:Trigger" xmi:id="_ITnuoALiEemf2vVNpogZfg" name="" event="_WI2OgALhEemf2vVNpogZfg"/>
+            </transition>
+            <transition xmi:type="uml:Transition" xmi:id="_b_nDAALgEemf2vVNpogZfg" source="_FvtHwALfEemf2vVNpogZfg" target="_FvtHwALfEemf2vVNpogZfg">
+              <trigger xmi:type="uml:Trigger" xmi:id="_J1i0YALiEemf2vVNpogZfg" name="" event="_cRZhIALhEemf2vVNpogZfg"/>
+            </transition>
+            <transition xmi:type="uml:Transition" xmi:id="_ws3fwALhEemf2vVNpogZfg" source="_FvtHwALfEemf2vVNpogZfg" target="_BlrXUALfEemf2vVNpogZfg">
+              <trigger xmi:type="uml:Trigger" xmi:id="_zl8lsALhEemf2vVNpogZfg" name="" event="_cRZhIALhEemf2vVNpogZfg"/>
+            </transition>
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_8idVEALeEemf2vVNpogZfg" name="s"/>
+            <subvertex xmi:type="uml:State" xmi:id="_BlrXUALfEemf2vVNpogZfg" name="Funcionando"/>
+            <subvertex xmi:type="uml:State" xmi:id="_FvtHwALfEemf2vVNpogZfg" name="Esperando"/>
+          </region>
+        </packagedElement>
+        <packagedElement xmi:type="uml:StateMachine" xmi:id="_qLkA0ALfEemf2vVNpogZfg" name="StateMachineAveria">
+          <region xmi:type="uml:Region" xmi:id="_rRoRAALfEemf2vVNpogZfg" name="Region1">
+            <transition xmi:type="uml:Transition" xmi:id="_CJGYAALgEemf2vVNpogZfg" source="_ydlhYALfEemf2vVNpogZfg" target="_zSGHgALfEemf2vVNpogZfg"/>
+            <transition xmi:type="uml:Transition" xmi:id="_FB-CkALgEemf2vVNpogZfg" source="_zSGHgALfEemf2vVNpogZfg" target="_030vMALfEemf2vVNpogZfg">
+              <trigger xmi:type="uml:Trigger" xmi:id="_S5FRcALiEemf2vVNpogZfg" name="" event="_S5F4gALiEemf2vVNpogZfg"/>
+            </transition>
+            <transition xmi:type="uml:Transition" xmi:id="_HXnrUALgEemf2vVNpogZfg" source="_030vMALfEemf2vVNpogZfg" target="_16uWoALfEemf2vVNpogZfg"/>
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_ydlhYALfEemf2vVNpogZfg" name="s"/>
+            <subvertex xmi:type="uml:State" xmi:id="_zSGHgALfEemf2vVNpogZfg" name="Pendiente"/>
+            <subvertex xmi:type="uml:State" xmi:id="_030vMALfEemf2vVNpogZfg" name="Procesando"/>
+            <subvertex xmi:type="uml:FinalState" xmi:id="_16uWoALfEemf2vVNpogZfg" name="FinalState"/>
+          </region>
+        </packagedElement>
+        <packagedElement xmi:type="uml:StateMachine" xmi:id="_oeSKMALgEemf2vVNpogZfg" name="StateMachineOperario">
+          <region xmi:type="uml:Region" xmi:id="_pZLFIALgEemf2vVNpogZfg" name="Region1">
+            <transition xmi:type="uml:Transition" xmi:id="_0VXF4ALgEemf2vVNpogZfg" source="_qCo44ALgEemf2vVNpogZfg" target="_rWl0EALgEemf2vVNpogZfg"/>
+            <transition xmi:type="uml:Transition" xmi:id="_1GscMALgEemf2vVNpogZfg" source="_rWl0EALgEemf2vVNpogZfg" target="_tmVpIALgEemf2vVNpogZfg">
+              <trigger xmi:type="uml:Trigger" xmi:id="_VUcgoALiEemf2vVNpogZfg" name="" event="_VUdHsALiEemf2vVNpogZfg"/>
+            </transition>
+            <transition xmi:type="uml:Transition" xmi:id="_2SsVQALgEemf2vVNpogZfg" source="_tmVpIALgEemf2vVNpogZfg" target="_rWl0EALgEemf2vVNpogZfg">
+              <trigger xmi:type="uml:Trigger" xmi:id="_WJOzkALiEemf2vVNpogZfg" name="" event="_WJOzkQLiEemf2vVNpogZfg"/>
+            </transition>
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_qCo44ALgEemf2vVNpogZfg" name="s"/>
+            <subvertex xmi:type="uml:State" xmi:id="_rWl0EALgEemf2vVNpogZfg" name="Libre"/>
+            <subvertex xmi:type="uml:State" xmi:id="_tmVpIALgEemf2vVNpogZfg" name="Ocupado"/>
+          </region>
+        </packagedElement>
+        <packagedElement xmi:type="uml:StateMachine" xmi:id="_7VMl0ALgEemf2vVNpogZfg" name="StateMachineTransporte">
+          <region xmi:type="uml:Region" xmi:id="_88UUoALgEemf2vVNpogZfg" name="Region1">
+            <transition xmi:type="uml:Transition" xmi:id="_EDLpoALhEemf2vVNpogZfg" source="_9m0qMALgEemf2vVNpogZfg" target="__wH5AALgEemf2vVNpogZfg"/>
+            <transition xmi:type="uml:Transition" xmi:id="_ExFRcALhEemf2vVNpogZfg" source="__wH5AALgEemf2vVNpogZfg" target="_BkCGoALhEemf2vVNpogZfg">
+              <trigger xmi:type="uml:Trigger" xmi:id="_YvXvYALiEemf2vVNpogZfg" name="" event="_YvYWcALiEemf2vVNpogZfg"/>
+            </transition>
+            <transition xmi:type="uml:Transition" xmi:id="_FvIOEALhEemf2vVNpogZfg" source="_BkCGoALhEemf2vVNpogZfg" target="__wH5AALgEemf2vVNpogZfg">
+              <trigger xmi:type="uml:Trigger" xmi:id="_aEfIMALiEemf2vVNpogZfg" name="" event="_aEfvQALiEemf2vVNpogZfg"/>
+            </transition>
+            <subvertex xmi:type="uml:Pseudostate" xmi:id="_9m0qMALgEemf2vVNpogZfg" name="s"/>
+            <subvertex xmi:type="uml:State" xmi:id="__wH5AALgEemf2vVNpogZfg" name="Funcionando"/>
+            <subvertex xmi:type="uml:State" xmi:id="_BkCGoALhEemf2vVNpogZfg" name="Averiado"/>
+          </region>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_18_0_6_129a036d_1545065247780_133169_4899" name="UML" URI="">
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063318961_365666_4152" name="Atraccion" isAbstract="true" isActive="true">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545065741071_952433_5174" name="siNoriaEntoncesVehiculos" constrainedElement="_18_0_6_129a036d_1545063318961_365666_4152">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545065741071_772194_5175" name="">
+              <body>self.oclIsTypeOf(Noria) implies transportes.forAll(t | t.oclIsTypeOf(Vehiculo))</body>
+            </specification>
+          </ownedRule>
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545065777911_41341_5176" name="siMRusaEntoncesVagones" constrainedElement="_18_0_6_129a036d_1545063318961_365666_4152">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545065777911_704078_5177" name="">
+              <body>self.oclIsTypeOf(MRusa) implies transportes.forAll(t | t.oclIsTypeOf(Vagon))</body>
+            </specification>
+          </ownedRule>
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545128470676_174575_4196" name="numeroCalleDefinido" constrainedElement="_18_0_6_129a036d_1545063318961_365666_4152">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545128470676_883010_4197" name="">
+              <body>not self.numeroCalle.oclIsUndefined()</body>
+            </specification>
+          </ownedRule>
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_6Kj5gALyEemq-dl9iAIO9g" name="noCiclosEnVagones">
+            <specification xmi:type="uml:LiteralString" xmi:id="_6Kr1UALyEemq-dl9iAIO9g" name="noCiclosEnVagones" value="self.oclIsTypeOf(MRusa) implies&#xA;    (self.transportes->one(t | t.oclAsType(Vagon).anterior->isEmpty()) and&#xA;    self.transportes->one(t | t.oclAsType(Vagon).posterior->isEmpty()))"/>
+          </ownedRule>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545063530485_695822_4354" name="numeroCalle" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064036912_885021_4408" name="parque" visibility="private" type="_18_0_6_129a036d_1545063248182_193944_4022" association="_18_0_6_129a036d_1545064036911_861165_4406">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064056384_950532_4437" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064056384_857730_4438" name="" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064332557_360821_4478" name="transportes" visibility="private" type="_18_0_6_129a036d_1545063272977_987161_4126" aggregation="shared" association="_18_0_6_129a036d_1545064332557_705772_4477">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064365337_523162_4515" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064365337_838790_4516" name="" value="*"/>
+          </ownedAttribute>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545063882758_798663_4367" name="arreglarComponente" visibility="public" postcondition="_18_0_6_129a036d_1545138836220_242419_4303" precondition="_18_0_6_129a036d_1545138751468_635350_4299">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545138751468_635350_4299" name="averiaEnAtrasion">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545138751468_956769_4300" name="">
+                <language>OCL2.0</language>
+                <body>self.transportes->collect(averia)->includes(av)</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545138836220_242419_4303" name="noMoreAverias">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545138836220_377661_4304" name="">
+                <language>OCL2.0</language>
+                <body>self.transportes->select(t | t.averia->notEmpty())->size() = self.transportes->select(t | t.averia@pre->notEmpty())->size() - 1</body>
+              </specification>
+            </ownedRule>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545063894121_293955_4369" name="componenteAveriado" visibility="public" precondition="_18_0_6_129a036d_1545138870503_809857_4305">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545138870503_809857_4305" name="hayTransporteConAveria">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545138870503_983775_4306" name="">
+                <language>OCL2.0</language>
+                <body>self.transportes->exists(t | t.averia->notEmpty())</body>
+              </specification>
+            </ownedRule>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063357715_678880_4256" name="Operario">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064773339_744115_4759" name="cra" visibility="private" type="_18_0_6_129a036d_1545063347721_863398_4230" association="_18_0_6_129a036d_1545064773338_679428_4757">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064788792_767454_4789" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064788792_14281_4790" name="" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064799394_211812_4806" name="dispositivo" visibility="private" type="_18_0_6_129a036d_1545063365846_718078_4282" association="_18_0_6_129a036d_1545064799394_848713_4805">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064853621_717602_4854" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064853621_249635_4855" name="" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064822825_367079_4827" name="averiaAtendida" visibility="private" type="_18_0_6_129a036d_1545064550460_798482_4630" association="_18_0_6_129a036d_1545064822825_597337_4826">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064883975_385664_4887" name=""/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064883975_495159_4888" name="" value="1"/>
+          </ownedAttribute>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545063908913_476993_4371" name="trabajadorOcupado" visibility="public" precondition="_18_0_6_129a036d_1545131299062_380406_4270">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131299062_380406_4270" name="existeAveriaAReparar">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131299062_369045_4271" name="">
+                <language>OCL2.0</language>
+                <body>self.averiaAtendida->notEmpty()</body>
+              </specification>
+            </ownedRule>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545063915821_796477_4373" name="trabajar" visibility="public" postcondition="_18_0_6_129a036d_1545131397433_371505_4274" precondition="_18_0_6_129a036d_1545131373471_270154_4272">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131373471_270154_4272" name="ocupado">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131373472_613418_4273" name="">
+                <language>OCL2.0</language>
+                <body>not self.dispositivo.opDisponible</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131397433_371505_4274" name="operarioLibre">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131397433_143522_4275" name="">
+                <language>OCL2.0</language>
+                <body>self.dispositivo.opDisponible</body>
+              </specification>
+            </ownedRule>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063266599_473786_4100" name="Detector">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064400996_290727_4526" name="transporte" visibility="private" type="_18_0_6_129a036d_1545063272977_987161_4126" association="_18_0_6_129a036d_1545064400996_340806_4525">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064423259_707123_4563" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064423259_512373_4564" name="" value="1"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_18_0_6_129a036d_1545064799394_848713_4805" name="Poseedor" memberEnd="_18_0_6_129a036d_1545064799394_211812_4806 _18_0_6_129a036d_1545064799394_150449_4807"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063248182_193944_4022" name="Parque">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064036912_72567_4407" name="atracciones" visibility="private" type="_18_0_6_129a036d_1545063318961_365666_4152" aggregation="composite" association="_18_0_6_129a036d_1545064036911_861165_4406">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064050160_81548_4427" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064050160_760519_4428" name="" value="*"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064739442_662293_4710" name="cra" visibility="private" type="_18_0_6_129a036d_1545063347721_863398_4230" association="_18_0_6_129a036d_1545064739442_845446_4709">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064753024_815296_4741" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064753024_250026_4742" name="" value="1"/>
+          </ownedAttribute>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_18_0_6_129a036d_1545064485357_719266_4580" name="Anclado" memberEnd="_18_0_6_129a036d_1545064485357_796456_4581 _18_0_6_129a036d_1545064485357_800304_4582"/>
+        <packagedElement xmi:type="uml:AssociationClass" xmi:id="_18_0_6_129a036d_1545064550460_798482_4630" name="Averia" memberEnd="_18_0_6_129a036d_1545064550460_926511_4631 _18_0_6_129a036d_1545064550460_383709_4632">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545065492074_755415_5128" name="MismaCRAOperarios" constrainedElement="_18_0_6_129a036d_1545064550460_798482_4630">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545065492075_118731_5129" name="">
+              <body>self.operario.cra = self.cra</body>
+            </specification>
+          </ownedRule>
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545065656920_523055_5152" name="MismaCRATransporte" constrainedElement="_18_0_6_129a036d_1545064550460_798482_4630">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545065656920_159437_5153" name="">
+              <body>self.transporte.atraccion.parque.cra = self.cra</body>
+            </specification>
+          </ownedRule>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064606658_918572_4699" name="atendida" visibility="private" isDerived="true">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064822826_431225_4828" name="operario" visibility="private" type="_18_0_6_129a036d_1545063357715_678880_4256" association="_18_0_6_129a036d_1545064822825_597337_4826">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064886555_458412_4893" name=""/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064886556_417068_4894" name="" value="1"/>
+          </ownedAttribute>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545064667858_469186_4701" name="empezarReparacion" visibility="public" precondition="_18_0_6_129a036d_1545131834297_51622_4288">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131834297_51622_4288" name="existeOperarioAtendiendo">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131834298_312389_4289" name="">
+                <language>OCL2.0</language>
+                <body>self.atendida</body>
+              </specification>
+            </ownedRule>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_18_0_6_129a036d_1545064773338_679428_4757" name="Trabajan" memberEnd="_18_0_6_129a036d_1545064773339_298046_4758 _18_0_6_129a036d_1545064773339_744115_4759"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063260934_480476_4074" name="MRusa">
+          <generalization xmi:type="uml:Generalization" xmi:id="_18_0_6_129a036d_1545064322797_283221_4472" general="_18_0_6_129a036d_1545063318961_365666_4152"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_18_0_6_129a036d_1545064822825_597337_4826" name="Atiende" memberEnd="_18_0_6_129a036d_1545064822825_367079_4827 _18_0_6_129a036d_1545064822826_431225_4828"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_18_0_6_129a036d_1545064036911_861165_4406" name="Existen" memberEnd="_18_0_6_129a036d_1545064036912_72567_4407 _18_0_6_129a036d_1545064036912_885021_4408"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_18_0_6_129a036d_1545064739442_845446_4709" name="Posee" memberEnd="_18_0_6_129a036d_1545064739442_662293_4710 _18_0_6_129a036d_1545064739442_729683_4711"/>
+        <packagedElement xmi:type="uml:Association" xmi:id="_18_0_6_129a036d_1545064332557_705772_4477" name="Compuesta" memberEnd="_18_0_6_129a036d_1545064332557_360821_4478 _18_0_6_129a036d_1545064332557_615478_4479"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063272977_987161_4126" name="Transporte" isAbstract="true">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545128424036_207593_4194" name="numeroDefinido" constrainedElement="_18_0_6_129a036d_1545063272977_987161_4126">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545128424038_763160_4195" name="">
+              <body>not self.numero.oclIsUndefined()</body>
+            </specification>
+          </ownedRule>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545063618677_523123_4356" name="numero" visibility="private">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064332557_615478_4479" name="atraccion" visibility="private" type="_18_0_6_129a036d_1545063318961_365666_4152" association="_18_0_6_129a036d_1545064332557_705772_4477">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064355908_177576_4505" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064355908_793891_4506" name="" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064400996_395049_4527" name="detector" visibility="private" type="_18_0_6_129a036d_1545063266599_473786_4100" association="_18_0_6_129a036d_1545064400996_340806_4525">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064421083_845723_4557" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064421083_331189_4558" name="" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064550460_926511_4631" name="cra" visibility="private" type="_18_0_6_129a036d_1545063347721_863398_4230" association="_18_0_6_129a036d_1545064550460_798482_4630">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064579500_268162_4683" name=""/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064579500_309308_4684" name="" value="1"/>
+          </ownedAttribute>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545063830290_262640_4363" name="romperTransporte" visibility="public" precondition="_18_0_6_129a036d_1545130966645_978875_4252">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545130966645_978875_4252" name="noUltimoVagon">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545130966645_835933_4253" name="">
+                <language>OCL2.0</language>
+                <body>self.oclIsTypeOf(Vagon) implies self.oclAsType(Vagon).posterior -> notEmpty()</body>
+              </specification>
+            </ownedRule>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545063849646_121012_4365" name="arreglarTransporte" visibility="public" postcondition="_18_0_6_129a036d_1545131080148_94489_4261" precondition="_18_0_6_129a036d_1545130991523_768109_4254 _18_0_6_129a036d_1545131009869_218542_4256 _18_0_6_129a036d_1545131022087_45670_4258">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545130991523_768109_4254" name="existeAveria">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545130991523_399380_4255" name="">
+                <language>OCL2.0</language>
+                <body>self.averia->notEmpty()</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131009869_218542_4256" name="averiaAtendida">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131009870_831872_4257" name="">
+                <body>self.averia.atendida</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131022087_45670_4258" name="mismaAveria">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131022087_696037_4259" name="">
+                <language>OCL2.0</language>
+                <body>self.averia = av</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131080148_94489_4261" name="AveriaEliminada">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131080148_407626_4262" name="">
+                <language>OCL2.0</language>
+                <body>self.averia->isEmpty() and Averia.allInstances->excludes(av)</body>
+              </specification>
+            </ownedRule>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_18_0_6_129a036d_1545131048888_275968_4260" name="av" visibility="public" type="_18_0_6_129a036d_1545064550460_798482_4630"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545131097638_970802_4263" name="averiaNoAtendida" visibility="public" precondition="_18_0_6_129a036d_1545131138547_872153_4266 _18_0_6_129a036d_1545131158833_150647_4268">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131138547_872153_4266" name="existeAveria">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131138547_675403_4267" name="">
+                <language>OCL2.0</language>
+                <body>self.averia->notEmpty()</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131158833_150647_4268" name="mismaAveria">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131158833_76293_4269" name="">
+                <language>OCL2.0</language>
+                <body>self.averia = averia</body>
+              </specification>
+            </ownedRule>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_18_0_6_129a036d_1545131117813_39922_4265" name="averia" visibility="public" type="_18_0_6_129a036d_1545064550460_798482_4630"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063347721_863398_4230" name="CRA">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064550460_383709_4632" name="transporte" visibility="private" type="_18_0_6_129a036d_1545063272977_987161_4126" association="_18_0_6_129a036d_1545064550460_798482_4630">
+            <lowerValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064584994_535714_4689" name=""/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064584994_978703_4690" name="" value="*"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064739442_729683_4711" name="parque" visibility="private" type="_18_0_6_129a036d_1545063248182_193944_4022" association="_18_0_6_129a036d_1545064739442_845446_4709">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064755064_320041_4747" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064755064_532889_4748" name="" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064773339_298046_4758" name="operarios" visibility="private" type="_18_0_6_129a036d_1545063357715_678880_4256" association="_18_0_6_129a036d_1545064773338_679428_4757">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064794429_137770_4795" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064794429_64034_4796" name="" value="*"/>
+          </ownedAttribute>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545063658611_409414_4358" name="averiaDetectada" visibility="public" postcondition="_18_0_6_129a036d_1545130688626_21117_4241" precondition="_18_0_6_129a036d_1545130639330_216023_4237 _18_0_6_129a036d_1545130659788_830926_4239">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545130639330_216023_4237" name="transportePerteneceAtraccion">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545130639331_280344_4238" name="">
+                <language>OCL2.0</language>
+                <body>atr.transportes->includes(trans)</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545130659788_830926_4239" name="mismoParque">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545130659789_637770_4240" name="">
+                <language>OCL2.0</language>
+                <body>atr.parque = self.parque</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545130688626_21117_4241" name="nuevaAveria">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545130688627_173115_4242" name="">
+                <language>OCL2.0</language>
+                <body>Averia.allInstances->select(av | av.oclIsNew())->notEmpty() implies Averia.allInstances->size() = Averia.allInstances@pre->size() + 1</body>
+              </specification>
+            </ownedRule>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_18_0_6_129a036d_1545063761067_715164_4361" name="trans" visibility="public" type="_18_0_6_129a036d_1545063272977_987161_4126"/>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_18_0_6_129a036d_1545063783807_294386_4362" name="atr" visibility="public" type="_18_0_6_129a036d_1545063318961_365666_4152"/>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545130728231_416743_4243" name="averiaArreglada" visibility="public" postcondition="_18_0_6_129a036d_1545130783171_436385_4249" precondition="_18_0_6_129a036d_1545130749912_133038_4245 _18_0_6_129a036d_1545130763349_161267_4247">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545130749912_133038_4245" name="averiaPerteneceACRA">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545130749913_851776_4246" name="">
+                <body>self.averia->includes(av)</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545130763349_161267_4247" name="averiaAsignadaAOperario">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545130763349_312187_4248" name="">
+                <body>av.operario->notEmpty() and self.operarios->includes(av.operario)</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545130783171_436385_4249" name="averiaEliminada">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545130783172_68985_4250" name="">
+                <body>self.averia@pre->size() = self.averia->size() + 1
+</body>
+              </specification>
+            </ownedRule>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_18_0_6_129a036d_1545130818173_154833_4251" name="av" visibility="public" type="_18_0_6_129a036d_1545064550460_798482_4630"/>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063365846_718078_4282" name="Dispositivo">
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545063400794_337680_4307" name="averiasAtendidas">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545063427154_116731_4309" name="opDisponible" visibility="private" isDerived="true">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064799394_150449_4807" name="operario" visibility="private" type="_18_0_6_129a036d_1545063357715_678880_4256" association="_18_0_6_129a036d_1545064799394_848713_4805">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064855795_358488_4860" name="" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064855796_893576_4861" name="" value="1"/>
+          </ownedAttribute>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545063933927_196529_4375" name="enviarInicidencia" visibility="public" postcondition="_18_0_6_129a036d_1545131502485_844556_4278" precondition="_18_0_6_129a036d_1545131452924_510694_4276">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131452924_510694_4276" name="averiaEnCalleYTransporte">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131452925_542455_4277" name="">
+                <language>OCL2.0</language>
+                <body>Averia.allInstances->collect(transporte)->asSet()->exists(t | t.numero = transNumero and t.atraccion.numeroCalle = calle)</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131502485_844556_4278" name="trabajadorOcupado">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131502485_510791_4279" name="">
+                <language>OCL2.0</language>
+                <body>let av: Averia = Averia.allInstances->
+                        select(av | av.transporte.numero = transNumero
+                        and av.transporte.atraccion.numeroCalle = calle and
+                        self.operario.cra.parque.atracciones->includes(av.transporte.atraccion))
+                        ->asSequence()->first() in
+                        not self.opDisponible and self.operario.averiaAtendida = av</body>
+              </specification>
+            </ownedRule>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_18_0_6_129a036d_1545063951467_93816_4377" name="calle" visibility="public">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            </ownedParameter>
+            <ownedParameter xmi:type="uml:Parameter" xmi:id="_18_0_6_129a036d_1545063965903_939701_4378" name="transNumero" visibility="public">
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            </ownedParameter>
+          </ownedOperation>
+          <ownedOperation xmi:type="uml:Operation" xmi:id="_18_0_6_129a036d_1545063984652_877190_4379" name="incidenciaResuelta" visibility="public" postcondition="_18_0_6_129a036d_1545131633318_479541_4284 _18_0_6_129a036d_1545131657370_625156_4286" precondition="_18_0_6_129a036d_1545131600293_506439_4280 _18_0_6_129a036d_1545131616721_618836_4282">
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131600293_506439_4280" name="trabajadorOcupado">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131600293_93762_4281" name="">
+                <language>OCL2.0</language>
+                <body>not self.opDisponible</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131616721_618836_4282" name="trabajadorAtiendeAveria">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131616721_928804_4283" name="">
+                <language>OCL2.0</language>
+                <body>self.operario.averiaAtendida = av</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131633318_479541_4284" name="averiasResueltasIncrementada">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131633318_316611_4285" name="">
+                <language>OCL2.0</language>
+                <body>self.averiasAtendidas = self.averiasAtendidas@pre + 1</body>
+              </specification>
+            </ownedRule>
+            <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545131657370_625156_4286" name="trabajadorLibre">
+              <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545131657371_952859_4287" name="">
+                <body>self.opDisponible</body>
+              </specification>
+            </ownedRule>
+          </ownedOperation>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063257025_624242_4048" name="Noria">
+          <generalization xmi:type="uml:Generalization" xmi:id="_18_0_6_129a036d_1545064313069_111398_4469" general="_18_0_6_129a036d_1545063318961_365666_4152"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063335527_232937_4178" name="Vehiculo">
+          <generalization xmi:type="uml:Generalization" xmi:id="_18_0_6_129a036d_1545064473876_922487_4571" general="_18_0_6_129a036d_1545063272977_987161_4126"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_18_0_6_129a036d_1545064400996_340806_4525" name="Contiene" memberEnd="_18_0_6_129a036d_1545064400996_290727_4526 _18_0_6_129a036d_1545064400996_395049_4527"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_18_0_6_129a036d_1545063342155_135053_4204" name="Vagon">
+          <ownedRule xmi:type="uml:Constraint" xmi:id="_18_0_6_129a036d_1545065831374_319070_5178" name="noAncladoASiMismo" constrainedElement="_18_0_6_129a036d_1545063342155_135053_4204">
+            <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_0_6_129a036d_1545065831375_250272_5179" name="">
+              <body>posterior &lt;> anterior or (self.anterior->size() = 0 and self.posterior->size() = 0)</body>
+            </specification>
+          </ownedRule>
+          <generalization xmi:type="uml:Generalization" xmi:id="_18_0_6_129a036d_1545064478732_498027_4574" general="_18_0_6_129a036d_1545063272977_987161_4126"/>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064485357_796456_4581" name="posterior" visibility="private" type="_18_0_6_129a036d_1545063342155_135053_4204" association="_18_0_6_129a036d_1545064485357_719266_4580">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064526809_266915_4620" name=""/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064526809_637179_4621" name="" value="1"/>
+          </ownedAttribute>
+          <ownedAttribute xmi:type="uml:Property" xmi:id="_18_0_6_129a036d_1545064485357_800304_4582" name="anterior" visibility="private" type="_18_0_6_129a036d_1545063342155_135053_4204" association="_18_0_6_129a036d_1545064485357_719266_4580">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_18_0_6_129a036d_1545064522634_739277_4612" name=""/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_18_0_6_129a036d_1545064522634_184971_4613" name="" value="1"/>
+          </ownedAttribute>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="magicdraw_uml_standard_profile_v_0001" name="UML Standard Profile" URI="">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_be00301_1078843546940_242228_131" annotatedElement="magicdraw_uml_standard_profile_v_0001">
+        <body>UML Standard Profile contains UML metamodel (metaclasses without properties and associations), StandardProfileL2 and StandardProfileL3 from UML specification, Standard UML stereotypes defined in annex C of UML specification.
+Profile also includes validation suites for UML model correctness and completeness checking, and stereotypes used by MagicDraw internally.</body>
+      </ownedComment>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_be00301_1073394351331_445580_2profileApplicationData">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g9oyUALXEemVFYrwyJh7zw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_g9iE_gLXEemVFYrwyJh7zw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_be00301_1073394351331_445580_2"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_11_5_be00301_1153310565718_226811_161profileApplicationData">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g9scsQLXEemVFYrwyJh7zw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_g9khfQLXEemVFYrwyJh7zw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="UML_Standard_Profile.MagicDraw_Profile.DSL_Customization.profile.uml#_11_5_be00301_1153310565718_226811_161"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_11_5_f720368_1159529670215_231387_1profileApplicationData">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g9tq0QLXEemVFYrwyJh7zw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Validation_Profile.profile.uml#_g9lJggLXEemVFYrwyJh7zw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="UML_Standard_Profile.Validation_Profile.profile.uml#_11_5_f720368_1159529670215_231387_1"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_17_0_4beta_8ca0285_1361349406965_180847_3086profileApplicationData">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g9u48ALXEemVFYrwyJh7zw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.Dependency_Matrix_Profile.profile.uml#_g9foYgLXEemVFYrwyJh7zw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="UML_Standard_Profile.Dependency_Matrix_Profile.profile.uml#_17_0_4beta_8ca0285_1361349406965_180847_3086"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_16_6_8f90291_1254846042821_86742_517profileApplicationData">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_g9vgAQLXEemVFYrwyJh7zw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.Traceability_customization.profile.uml#_g9g2nwLXEemVFYrwyJh7zw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="UML_Standard_Profile.MagicDraw_Profile.Traceability_customization.profile.uml#_16_6_8f90291_1254846042821_86742_517"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_QEqwcALfEemf2vVNpogZfg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QEsloALfEemf2vVNpogZfg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <MagicDrawProfile:auxiliaryResource xmi:id="_g94p8ALXEemVFYrwyJh7zw" base_Element="magicdraw_uml_standard_profile_v_0001" base_Package="magicdraw_uml_standard_profile_v_0001"/>
+</xmi:XMI>
