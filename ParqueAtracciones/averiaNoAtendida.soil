@@ -1,0 +1,8 @@
+-- Averías
+!Va1.romperTransporte()
+!Va12.romperTransporte()
+
+!Ve3.romperTransporte()
+!Ve13.romperTransporte()
+
+-- Seleccionar un transporte y realizar !idTransporte.romperTransporte()

@@ -1,4 +1,5 @@
 reset
 open TerraMiticaBueno.soil
 open PortAventuraBueno.soil
-open funcs.soil
+--open todoBien.soil para una ejecucion completa y funcional
+--open averiaNoAtendida.soil para el bucle de polling
