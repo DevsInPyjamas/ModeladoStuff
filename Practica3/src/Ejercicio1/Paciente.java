@@ -1,13 +1,15 @@
 package Ejercicio1;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Paciente {
     private Expediente expedienteAbierto;
     private List<Expediente> expedientes;
 
-    public Paciente(Expediente expediente) {
-        this.expedientes.add(expediente);
+    public Paciente() {
+        expedientes = new LinkedList<>();
+        Expediente expediente = new Expediente(this);
         expediente.addPaciente(this);
     }
 
@@ -17,5 +19,13 @@ public class Paciente {
 
     public void eliminarExpediente(Expediente expediente) {
         this.expedientes.remove(expediente);
+    }
+
+    @Override
+    public String toString() {
+        return "Paciente{" +
+                "expedienteAbierto=" + expedienteAbierto +
+                ", expedientes=" + expedientes +
+                '}';
     }
 }

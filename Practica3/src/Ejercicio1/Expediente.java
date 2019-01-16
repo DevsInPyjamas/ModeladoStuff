@@ -1,6 +1,7 @@
 package Ejercicio1;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Expediente {
@@ -8,8 +9,16 @@ public class Expediente {
     private Paciente paciente;
 
     public Expediente(Paciente paciente) {
+        listaAccesos = new LinkedList<>();
         this.paciente = paciente;
         paciente.addExpediente(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Expediente{" +
+                "listaAccesos=" + listaAccesos +
+                '}';
     }
 
     public void addPaciente(Paciente paciente) {

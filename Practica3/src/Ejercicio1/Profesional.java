@@ -21,4 +21,11 @@ public class Profesional {
         }
         return listaExpedientes;
     }
+
+    @Override
+    public String toString() {
+        return "Profesional{" +
+                "listaAccesos=" + listaAccesos +
+                '}';
+    }
 }

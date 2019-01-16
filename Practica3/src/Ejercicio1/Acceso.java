@@ -53,4 +53,12 @@ public class Acceso {
     public Profesional getUsuario() {
         return usuario;
     }
+
+    @Override
+    public String toString() {
+        return "Acceso{" +
+                "fecha=" + fecha +
+                ", tipo=" + tipo +
+                '}';
+    }
 }
