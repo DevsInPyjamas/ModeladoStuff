@@ -1,4 +1,4 @@
-package Ejercicio1;
+package practica3.Ejercicio1;
 
 import java.util.Date;
 
