@@ -1,4 +1,4 @@
-package practica4.Ejercicio1;
+package practica4.ejercicio1;
 
 import java.util.List;
 
@@ -7,7 +7,6 @@ public abstract class Servicio {
     protected List<Proveedor> proveedores;
 
     public void consumir() {
-        System.out.println("Yo no consumo nada");
     }
 
     public void addProveedor(Proveedor proveedor) {

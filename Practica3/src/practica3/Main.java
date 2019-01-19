@@ -1,6 +1,6 @@
 package practica3;
 
-import practica3.Ejercicio2.MedioPensionista;
+import practica3.ejercicio2.MedioPensionista;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package practica3.Ejercicio2;
+package practica3.ejercicio2;
 
 public class Pensionista extends Trabajador {
     public Pensionista(String nombre, String numeroSeguridadSocial, double salarioPensionista) {

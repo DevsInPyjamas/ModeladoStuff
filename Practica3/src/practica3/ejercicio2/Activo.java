@@ -1,4 +1,4 @@
-package practica3.Ejercicio2;
+package practica3.ejercicio2;
 
 public class Activo extends  Trabajador{
     public Activo(String nombre, String numeroSeguridadSocial, double salarioActivo) {

@@ -1,4 +1,4 @@
-package practica3.Ejercicio2;
+package practica3.ejercicio2;
 
 public abstract class Trabajador {
     public String nombre;
