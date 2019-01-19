@@ -37,11 +37,7 @@ public class Expediente {
         this.paciente.eliminarExpediente(this);
     }
 
-    public Iterable<Profesional> getAllAccesosByProfesionales(){
-        List<Profesional> listaProfesionales = new ArrayList<>();
-        for(Acceso acceso: listaAccesos) {
-            listaProfesionales.add(acceso.getUsuario());
-        }
-        return listaProfesionales;
+    public Iterable<Acceso> getAllAccesosByProfesionales(){
+        return listaAccesos;
     }
 }
