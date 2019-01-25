@@ -1,6 +1,5 @@
 package practica3;
 
-import practica3.ejercicio2.MedioPensionista;
 import practica3.ejercicio3.Bandeja;
 import practica3.ejercicio3.Pieza;
 

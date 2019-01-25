@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mailbox {
-    List<Email> emails;
-    SorterStrategy sorterStrategy;
+    private List<Email> emails;
+    private SorterStrategy sorterStrategy;
 
     public Mailbox(SorterStrategy sorterStrategy) {
         emails = new ArrayList<>();

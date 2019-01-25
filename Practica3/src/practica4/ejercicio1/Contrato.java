@@ -19,6 +19,6 @@ public class Contrato {
     }
 
     public Servicio ejecutar() {
-        return proveedor.servicio;
+        return proveedor.getServicio();
     }
 }

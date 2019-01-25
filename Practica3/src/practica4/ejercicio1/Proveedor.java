@@ -4,7 +4,7 @@ import java.util.List;
 
 public abstract class Proveedor {
     private String nombre;
-    Servicio servicio;
+    private Servicio servicio;
     protected List<Contrato> contratoList;
 
     public Proveedor(Servicio servicio, String nombre) {
