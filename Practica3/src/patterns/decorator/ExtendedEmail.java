@@ -1,6 +1,6 @@
 package patterns.decorator;
 
-public class ExtendedEmail implements Email {
+public abstract class ExtendedEmail implements Email {
     private Email toExtend;
 
     public ExtendedEmail(Email toExtend) {
