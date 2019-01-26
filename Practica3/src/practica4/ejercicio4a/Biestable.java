@@ -1,10 +1,10 @@
-package practica4.ejercicio4;
+package practica4.ejercicio4a;
 
-public abstract class Estable {
+public class Biestable {
     private State currentState;
 
-    public Estable() {
-        this.currentState = new RedState(new Mediador());
+    public Biestable() {
+        this.currentState = new RedState();
     }
 
     public void cerrar() {
